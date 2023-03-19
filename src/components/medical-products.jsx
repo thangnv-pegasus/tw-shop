@@ -104,9 +104,9 @@ const MedicalProduct = () => {
             modules={[Grid]}
             className="mySwiper"
           >
-            {data.map((item) => {
+            {data.map((item,index) => {
               return (
-                <SwiperSlide key={item.id}>
+                <SwiperSlide key={index}>
                   <Product
                     name={item.name}
                     price={item.price.toLocaleString()}

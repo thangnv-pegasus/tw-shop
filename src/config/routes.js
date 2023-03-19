@@ -16,7 +16,7 @@ const routes = {
     xetnghiemditruyen: '/xet-nghiem-di-truyen',
     tebaohoc: '/te-bao-hoc',
     detailProduct: '/detail-product/:productID',
-    blog: 'blog-:blogID'
+    blog: '/blog/:blogID'
 
 }
 

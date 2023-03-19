@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 const BlogItem = ({ data }) => {
+  // console.log(data)
   return (
     <div className="w-full">
-      <Link to={`blog-blog${data.id}`} className="w-full h-270px relative block">
+      <Link to={`/blog/${data.id}`} className="w-full h-270px relative block">
         <img
           src={data.img}
           alt="img"
@@ -14,7 +15,7 @@ const BlogItem = ({ data }) => {
         </div>
       </Link>
       <p className="py-2 text-sm font-medium text-[#6e7874]">Đăng bởi: {data.author}</p>
-      <Link to={`/blog-blog${data.id}`} className="text-base text-[#444] font-bold transition-all duration-200 hover:text-sky-500">{data.title}</Link>
+      <Link to={`/blog/${data.id}`} className="text-base text-[#444] font-bold transition-all duration-200 hover:text-sky-500">{data.title}</Link>
     </div>
   );
 };
