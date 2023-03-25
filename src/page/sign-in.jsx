@@ -44,6 +44,11 @@ const SigninForm = () => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           localStorage.setItem("user", JSON.stringify(docSnap.data()));
+          if(docSnap.data().email === "admin@gmail.com"){
+            localStorage.setItem("admin","true");
+          }else{
+            localStorage.setItem("admin","false");
+          }
           nav("/");
           // window.location.reload();
         } else {
@@ -62,7 +67,7 @@ const SigninForm = () => {
 
   return (
     <div className="max-w-container mx-auto text-center text-[#444]">
-      <form className="block my-5" onSubmit={(e) => handleSubmit(e)}>
+      <form className="block my-5" onSubmit={(e) => {handleSubmit(e)}}>
         <h2 className="text-2xl font-semibold mb-5">Đăng nhập</h2>
         <p>
           Nếu bạn chưa có tài khoản,{" "}

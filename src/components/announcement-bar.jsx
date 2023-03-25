@@ -2,7 +2,7 @@ import { faClock, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signOut } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
 
@@ -27,12 +27,19 @@ const AnnouncementBar = () => {
       .then(() => {
         // Sign-out successful.
         nav("/");
+        localStorage.clear();
         window.location.reload();
       })
       .catch((error) => {
         // An error happened.
       });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("user") != null) {
+      thisUser = JSON.parse(localStorage.getItem("user"));
+    }
+  });
 
   return (
     <div className="w-full bg-sky-500">

@@ -16,6 +16,7 @@ import TeBaoHoc from "~/page/te-bao-hoc";
 import SearchPage from "~/page/search-page";
 import DetailProduct from "~/page/product-detail";
 import Blog from "~/page/detail-blog";
+import ShoppingCart from "~/page/cart-page";
 
 const publicRoutes = [
   {
@@ -68,24 +69,32 @@ const publicRoutes = [
   },
   {
     path: routes.xetnghiemditruyen,
-    component: XetNghiemDiTruyen
+    component: XetNghiemDiTruyen,
   },
   {
     path: routes.tebaohoc,
-    component: TeBaoHoc
+    component: TeBaoHoc,
   },
   {
     path: routes.search,
-    component: SearchPage
+    component: SearchPage,
   },
   {
     path: routes.detailProduct,
-    component: DetailProduct
+    component: DetailProduct,
   },
   {
     path: routes.blog,
-    component: Blog
-  }
+    component: Blog,
+  },
+  {
+    path: routes.featuredProduct,
+    component: Products,
+  },
+  {
+    path: routes.cartPage,
+    component: ShoppingCart,
+  },
 ];
 
 export default publicRoutes;

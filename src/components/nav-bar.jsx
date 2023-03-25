@@ -4,18 +4,26 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
 
 const NavBar = () => {
   const [text, setText] = useState("");
-  const nav = useNavigate()
+  const [admin, setAdmin] = useState(false);
+  const nav = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    nav(`/search-page/${text}`)
+    nav(`/search-page/${text}`);
   };
+
+  useEffect(() => {
+    const storage = localStorage.getItem("user");
+    if (storage == "admin") {
+      setAdmin(true);
+    }
+  });
 
   return (
     <div>
@@ -117,7 +125,7 @@ const NavBar = () => {
               <ul className="absolute top-full w-64 shadow-subNav hidden bg-white group-hover:block">
                 <li className="px-5">
                   <Link
-                    to="/"
+                    to={routes.featuredProduct}
                     className="text-textColor py-2 font-medium text-sm transition-all duration-150 hover:text-sky-700 block border-b-[1px] border-solid border-b-[#e5e6ec]"
                   >
                     Sản phẩm nổi bật
@@ -189,7 +197,7 @@ const NavBar = () => {
             </form>
           </div>
           <Link
-            to="/"
+            to={routes.cartPage}
             className="pl-2 flex items-center transition-all duration-150 hover:text-sky-700"
           >
             <span className="mx-[2px] text-lg">
@@ -198,7 +206,9 @@ const NavBar = () => {
             Giỏ hàng
             <span>(0)</span>
           </Link>
+          {admin == true && <p className="text-black">admin</p>}
         </div>
+        
       </div>
     </div>
   );
