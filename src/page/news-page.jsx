@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BlogItem from "~/components/blog-item";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
+import Loading from "~/components/loading";
 import PageTitle from "~/components/page-title";
 import { firebase_store } from "~/config/firebase-config";
 
@@ -33,11 +34,15 @@ const News = () => {
           <h2 className="text-left font-semibold text-[#444] text-4xl">
             Tin tức
           </h2>
-          <div className="py-10 grid grid-cols-3 gap-10 gap-x-14">
-            {data.map((item) => {
-              return <BlogItem data={item} key={item.id} />;
-            })}
-          </div>
+          {data == null ? (
+            <Loading />
+          ) : (
+            <div className="py-10 grid grid-cols-3 gap-10 gap-x-14">
+              {data.map((item) => {
+                return <BlogItem data={item} key={item.id} />;
+              })}
+            </div>
+          )}
         </div>
       </div>
 

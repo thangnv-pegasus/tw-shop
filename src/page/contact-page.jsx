@@ -29,7 +29,7 @@ const ContactPage = () => {
         ></iframe>
       </div>
       <div className="max-w-container mx-auto">
-        <div className="grid grid-cols-cols_5_7 gap-5 px-20 py-28 bg-white shadow-subNav text-[#6e7874] z-10">
+        <div className="grid grid-cols-cols_5_7 gap-5 px-20 py-28 bg-white shadow-subNav text-[#6e7874] z-10 translate-y-[-25%] rounded-3xl">
           <div>
             <Link to={routes.home} className="block w-64 h-auto mb-5">
               <img

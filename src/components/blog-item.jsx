@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const BlogItem = ({ data }) => {
-  // console.log(data)
   return (
     <div className="w-full">
       <Link to={`/blog/${data.id}`} className="w-full h-270px relative block">

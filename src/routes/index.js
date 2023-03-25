@@ -15,7 +15,7 @@ import XetNghiemDiTruyen from "~/page/xet-nghiem-di-truyen";
 import TeBaoHoc from "~/page/te-bao-hoc";
 import SearchPage from "~/page/search-page";
 import DetailProduct from "~/page/product-detail";
-import Blog from "~/page/blog-page";
+import Blog from "~/page/detail-blog";
 
 const publicRoutes = [
   {
