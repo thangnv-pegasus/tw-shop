@@ -1,7 +1,8 @@
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const { faArrowRight } = require("@fortawesome/free-solid-svg-icons");
-const { FontAwesomeIcon } = require("@fortawesome/react-fontawesome");
+
 
 const Button = ({ text, className = "", linkTo }) => {
   if(linkTo){
