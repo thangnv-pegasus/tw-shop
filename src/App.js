@@ -10,7 +10,7 @@ function App() {
           {publicRoutes.map((item, index) => (
             <Route path={item.path} element={<item.component />} key={index} />
           ))}
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       }
     </div>
