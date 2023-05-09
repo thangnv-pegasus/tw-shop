@@ -42,7 +42,6 @@ const SigninForm = () => {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // console.log(userCredential);
         await setDoc(doc(firebase_store, "users", email), {
           first_name: fName,
           last_name: lName,

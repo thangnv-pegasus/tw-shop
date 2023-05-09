@@ -31,8 +31,6 @@ const SearchPage = () => {
     getData();
   }, []);
 
-  // console.log(text)
-
   return (
     <>
       <Header />
@@ -50,11 +48,7 @@ const SearchPage = () => {
                 {products.map((product) => {
                   return (
                     <Product
-                      imgSrc={product.imgUrl[0]}
-                      name={product.name}
-                      price={product.price}
-                      productID={product.id}
-                      key={product.id}
+                      product = {product}
                     />
                   );
                 })}

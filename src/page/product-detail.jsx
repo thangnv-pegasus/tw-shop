@@ -7,8 +7,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Button from "~/components/button";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
 import Loading from "~/components/loading";
@@ -16,11 +16,11 @@ import PageTitle from "~/components/page-title";
 import Product from "~/components/product-item";
 import { firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
+import { add_product } from "~/redux/cart/cart.actions";
 
 const DetailProduct = () => {
   const params = useParams();
   const [product, setProduct] = useState();
-  // console.log(params.productID);
 
   const [state, setState] = useState(1);
   const [tabIndex, setTabIndex] = useState(1);
@@ -53,13 +53,15 @@ const DetailProduct = () => {
 
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [params.productID]);
 
   const formatNumber = (str) => {
     const num = Number.parseInt(str);
     const numFormat = num.toLocaleString("en-US");
     return numFormat;
   };
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -151,7 +153,17 @@ const DetailProduct = () => {
                   <div className="flex mt-8">
                     <button className="flex items-center bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] font-semibold">
                       <FontAwesomeIcon icon={faBasketShopping} />
-                      <span className="ml-1">Thêm vào giỏ hàng</span>
+                      <span
+                        className="ml-1"
+                        onClick={() => {
+                          // console.log({ ...product, quantity: state });
+                          dispatch(
+                            add_product({ ...product, quantity: state })
+                          );
+                        }}
+                      >
+                        Thêm vào giỏ hàng
+                      </span>
                       <span className="absolute top-0 left-0 right-0 bottom-0 bg-sky-400 w-0 transition-all ease-linear duration-200 z-[-1] group-hover:w-full"></span>
                     </button>
                     <button className="flex items-center ml-5 bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] font-semibold">
@@ -215,11 +227,7 @@ const DetailProduct = () => {
                       if (item.id < 6) {
                         return (
                           <Product
-                            imgSrc={item.imgUrl[0]}
-                            name={item.name}
-                            price={item.price}
-                            productID={item.id}
-                            key={item.id}
+                            product = {item}
                           />
                         );
                       }

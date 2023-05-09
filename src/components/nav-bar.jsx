@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
 
@@ -24,6 +25,11 @@ const NavBar = () => {
       setAdmin(true);
     }
   });
+
+  const count = useSelector((state) => {
+    return state.shopping_cart.cart.length;
+  });
+
 
   return (
     <div>
@@ -204,11 +210,10 @@ const NavBar = () => {
               <FontAwesomeIcon icon={faBasketShopping} />
             </span>
             Giỏ hàng
-            <span>(0)</span>
+            <span>({count})</span>
           </Link>
           {admin == true && <p className="text-black">admin</p>}
         </div>
-        
       </div>
     </div>
   );

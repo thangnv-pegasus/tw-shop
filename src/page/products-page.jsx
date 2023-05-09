@@ -355,11 +355,7 @@ const Products = () => {
               let url = item.imgUrl;
               return (
                 <Product
-                  name={item.name}
-                  imgSrc={url[0]}
-                  price={item.price}
-                  key={item.id}
-                  productID={item.id}
+                  product = {item}
                 />
               );
             })}

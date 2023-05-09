@@ -108,10 +108,7 @@ const MedicalProduct = () => {
               return (
                 <SwiperSlide key={index}>
                   <Product
-                    name={item.name}
-                    price={item.price.toLocaleString()}
-                    imgSrc={item.imgSrc}
-                    productID={item.id}
+                    product = {item}
                   />
                 </SwiperSlide>
               );

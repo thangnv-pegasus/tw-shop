@@ -17,6 +17,7 @@ import SearchPage from "~/page/search-page";
 import DetailProduct from "~/page/product-detail";
 import Blog from "~/page/detail-blog";
 import ShoppingCart from "~/page/cart-page";
+import Test from "~/page/test-redux";
 
 const publicRoutes = [
   {
@@ -95,6 +96,10 @@ const publicRoutes = [
     path: routes.cartPage,
     component: ShoppingCart,
   },
+  {
+    path: routes.test,
+    component: Test
+  }
 ];
 
 export default publicRoutes;

@@ -13,7 +13,7 @@ const AnnouncementBar = () => {
   const nav = useNavigate();
   if (user !== null) {
     // The user object has basic properties such as display name, email, etc.
-    console.log(user);
+    // console.log(user);
     thisUser = JSON.parse(localStorage.getItem("user"));
 
     // The user's ID, unique to the Firebase project. Do NOT use

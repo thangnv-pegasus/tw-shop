@@ -19,6 +19,7 @@ const routes = {
   blog: "/blog/:blogID",
   featuredProduct: "/featured-products",
   cartPage: "/shopping-cart",
+  test: '/test'
 };
 
 export default routes;

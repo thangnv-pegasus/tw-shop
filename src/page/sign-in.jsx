@@ -1,7 +1,4 @@
-import {
-  faFacebookF,
-  faGooglePlusG,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -44,10 +41,13 @@ const SigninForm = () => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           localStorage.setItem("user", JSON.stringify(docSnap.data()));
-          if(docSnap.data().email === "admin@gmail.com"){
-            localStorage.setItem("admin","true");
-          }else{
-            localStorage.setItem("admin","false");
+          if (
+            docSnap.data().email == "admin@gmail.com" &&
+            docSnap.data().password === password
+          ) {
+            localStorage.setItem("admin", "true");
+          } else {
+            localStorage.setItem("admin", "false");
           }
           nav("/");
           // window.location.reload();
@@ -58,16 +58,18 @@ const SigninForm = () => {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
         console.log(error);
       });
   };
 
   return (
     <div className="max-w-container mx-auto text-center text-[#444]">
-      <form className="block my-5" onSubmit={(e) => {handleSubmit(e)}}>
+      <form
+        className="block my-5"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <h2 className="text-2xl font-semibold mb-5">Đăng nhập</h2>
         <p>
           Nếu bạn chưa có tài khoản,{" "}

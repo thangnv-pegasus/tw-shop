@@ -57,7 +57,7 @@ const Blog = () => {
                   <span className="ml-4">Ngày: {data.date}</span>
                 </p>
                 <div>
-                  <img src={data.img[0]} alt="img" className="block mb-5" />
+                  <img src={data.img[0]} alt="img" className="block mb-5 mx-auto"/>
                   {data.content.map((item, index) => {
                     if (index < data.content.length - 1) {
                       return (

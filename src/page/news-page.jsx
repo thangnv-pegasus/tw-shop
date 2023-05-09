@@ -22,7 +22,6 @@ const News = () => {
 
   useEffect(() => {
     getData();
-    // console.log(data);
   }, []);
 
   return (

@@ -1,8 +1,6 @@
 import { INCREMENT, DECREMENT } from "./counter.types";
 
-const INITIAL_STATE = {
-  count: 0,
-};
+import { INITIAL_STATE } from "../init-state";
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
