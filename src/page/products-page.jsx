@@ -4,7 +4,7 @@ import PageTitle from "~/components/page-title";
 import "~/css/custom.scss";
 import { getDatabase, ref, set } from "firebase/database";
 import Product from "~/components/product-item";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -14,6 +14,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { firebase_store } from "~/config/firebase-config";
+import { AppContext } from "~/context-api/app-provider";
 
 const data = [
   {
@@ -92,56 +93,42 @@ const data = [
 ];
 
 const Products = () => {
-  const addProduct = async ({
-    id,
-    name,
-    price,
-    price_sale,
-    imgUrl,
-    description,
-    detail,
-    warranty,
-  }) => {
-    await setDoc(doc(firebase_store, "products", `product${id}`), {
-      id: id,
-      name: name,
-      price: price,
-      price_sale,
-      imgUrl: imgUrl,
-      description: description,
-      detail: detail,
-      warranty: warranty,
-    });
-  };
+  const { products } = useContext(AppContext);
 
-  const [products, setProducts] = useState([]);
+  // const addProduct = async ({
+  //   id,
+  //   name,
+  //   price,
+  //   price_sale,
+  //   imgUrl,
+  //   description,
+  //   detail,
+  //   warranty,
+  // }) => {
+  //   await setDoc(doc(firebase_store, "products", `product${id}`), {
+  //     id: id,
+  //     name: name,
+  //     price: price,
+  //     price_sale,
+  //     imgUrl: imgUrl,
+  //     description: description,
+  //     detail: detail,
+  //     warranty: warranty,
+  //   });
+  // };
 
-  for (let i = 0; i < data.length; i++) {
-    addProduct({
-      id: data[i].productId,
-      name: data[i].name,
-      price: data[i].price,
-      price_sale: data[i].price_sale,
-      imgUrl: data[i].imageUrl,
-      description: data[i].description,
-      detail: data[i].detail,
-      warranty: data[i].warranty,
-    });
-  }
-
-  const getProducts = async () => {
-    const querySnapshot = await getDocs(collection(firebase_store, "products"));
-    const temp = [];
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      temp.push(doc.data());
-    });
-    setProducts(temp);
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  // for (let i = 0; i < data.length; i++) {
+  //   addProduct({
+  //     id: data[i].productId,
+  //     name: data[i].name,
+  //     price: data[i].price,
+  //     price_sale: data[i].price_sale,
+  //     imgUrl: data[i].imageUrl,
+  //     description: data[i].description,
+  //     detail: data[i].detail,
+  //     warranty: data[i].warranty,
+  //   });
+  // }
 
   return (
     <div>
@@ -353,11 +340,7 @@ const Products = () => {
           <div className="grid grid-cols-3 gap-7">
             {products.map((item, index) => {
               let url = item.imgUrl;
-              return (
-                <Product
-                  product = {item}
-                />
-              );
+              return <Product product={item} />;
             })}
           </div>
         </div>

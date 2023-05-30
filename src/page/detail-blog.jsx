@@ -1,5 +1,5 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BlogItem from "~/components/blog-item";
 import Footer from "~/components/footer";
@@ -7,24 +7,16 @@ import Header from "~/components/header";
 import Loading from "~/components/loading";
 import PageTitle from "~/components/page-title";
 import { firebase_store } from "~/config/firebase-config";
+import { AppContext } from "~/context-api/app-provider";
 
 const Blog = () => {
   const param = useParams();
   const [data, setData] = useState();
-  const [listBlog, setListBlog] = useState([]);
-
+  const {posts} = useContext(AppContext)
   const getBlog = async () => {
     const arr = [];
     const docRef = doc(firebase_store, "blogs", `blog${param.blogID}`);
     const docSnap = await getDoc(docRef);
-    const querySnapshot = await getDocs(collection(firebase_store, "blogs"));
-
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      arr.push(doc.data());
-    });
-    setListBlog(arr);
-
     if (docSnap.exists()) {
       // console.log("Document data:", docSnap.data());
       setData(docSnap.data());
@@ -78,7 +70,7 @@ const Blog = () => {
                     <h3 className="text-2xl font-semibold text-[#444]">
                       Bài viết liên quan:
                     </h3>
-                    <RelatedBlog data={listBlog} />
+                    <RelatedBlog data={posts} />
                   </div>
                 </div>
               </div>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
 import PageTitle from "~/components/page-title";
-import { firebase_store } from "~/config/firebase-config";
+import { firebase_auth, firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
 
 const SignUp = () => {
@@ -33,12 +33,10 @@ const SigninForm = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    const auth = getAuth();
-
     // gửi lên firebase tín hiệu muốn đăng ký tài khoản
     // thực chất lúc này đã có tài khoản trên database của fire auth rồi
     // nhưng ta muốn dữ liệu này được lưu trên fire store để có thể dễ dàng lấy ra
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(firebase_auth, email, password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;

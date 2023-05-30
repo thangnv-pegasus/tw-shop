@@ -4,32 +4,31 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
+import { AuthContext } from "~/context-api/auth-provider";
 
 const NavBar = () => {
   const [text, setText] = useState("");
   const [admin, setAdmin] = useState(false);
   const nav = useNavigate();
+  const { cart } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     nav(`/search-page/${text}`);
   };
 
-  useEffect(() => {
-    const storage = localStorage.getItem("user");
-    if (storage == "admin") {
-      setAdmin(true);
-    }
-  });
+  // useEffect(() => {
+  //   const storage = localStorage.getItem("user");
+  //   if (storage == "admin") {
+  //     setAdmin(true);
+  //   }
+  // });
 
-  const count = useSelector((state) => {
-    return state.shopping_cart.cart.length;
-  });
-
+  const count = 0;
 
   return (
     <div>
@@ -210,7 +209,7 @@ const NavBar = () => {
               <FontAwesomeIcon icon={faBasketShopping} />
             </span>
             Giỏ hàng
-            <span>({count})</span>
+            <span>({cart.length})</span>
           </Link>
           {admin == true && <p className="text-black">admin</p>}
         </div>

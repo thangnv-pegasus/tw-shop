@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
 import PageTitle from "~/components/page-title";
-import { firebase_store } from "~/config/firebase-config";
+import { firebase_auth, firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
 
 const SignIn = () => {
@@ -29,8 +29,7 @@ const SigninForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(firebase_auth, email, password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -39,7 +38,7 @@ const SigninForm = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+          // console.log("Document data:", docSnap.data());
           localStorage.setItem("user", JSON.stringify(docSnap.data()));
           if (
             docSnap.data().email == "admin@gmail.com" &&

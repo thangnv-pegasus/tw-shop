@@ -2,44 +2,27 @@ import { faClock, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signOut } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { firebase_auth } from "~/config/firebase-config";
 import routes from "~/config/routes";
+import { AuthContext } from "~/context-api/auth-provider";
 
 const AnnouncementBar = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  let thisUser = "";
+  const { user } = useContext(AuthContext);
   const nav = useNavigate();
-  if (user !== null) {
-    // The user object has basic properties such as display name, email, etc.
-    // console.log(user);
-    thisUser = JSON.parse(localStorage.getItem("user"));
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    const uid = user.uid;
-  }
 
   const handleSignOut = () => {
-    signOut(auth)
+    signOut(firebase_auth)
       .then(() => {
         // Sign-out successful.
         nav("/");
-        localStorage.clear();
         window.location.reload();
       })
       .catch((error) => {
         // An error happened.
       });
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("user") != null) {
-      thisUser = JSON.parse(localStorage.getItem("user"));
-    }
-  });
 
   return (
     <div className="w-full bg-sky-500">
@@ -79,7 +62,7 @@ const AnnouncementBar = () => {
             <>
               <Link className="text-sm font-medium transition-all duration-15">
                 {/* {user.last_name} */}
-                {thisUser.last_name}
+                {user.fieldName}
               </Link>
               <span className="mx-1">/</span>
               <p

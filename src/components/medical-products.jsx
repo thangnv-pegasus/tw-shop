@@ -13,67 +13,12 @@ import "swiper/css/pagination";
 // import required modules
 import { Grid } from "swiper";
 import Product from "./product-item";
-
-const data = [
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  },
-  {
-    id: 1,
-    name: "Máy xông mũi họng",
-    price: 1130000,
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/products/may-xong-mui-hong-beurer-ih26-duc-5d37bdc406a19-24072019090908-ced00d13-cf7f-4b2c-b1ad-1081447c94ea.jpg?v=1585558027640",
-  }
-];
+import { useContext } from "react";
+import { AppContext } from "~/context-api/app-provider";
 
 const MedicalProduct = () => {
+  const { products } = useContext(AppContext);
+
   return (
     <div className="mt-24 mb-16">
       <div className="max-w-container mx-auto">
@@ -104,12 +49,10 @@ const MedicalProduct = () => {
             modules={[Grid]}
             className="mySwiper"
           >
-            {data.map((item,index) => {
+            {products.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <Product
-                    product = {item}
-                  />
+                  <Product product={item} />
                 </SwiperSlide>
               );
             })}

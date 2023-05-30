@@ -5,8 +5,19 @@ import {
   faCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Footer from "~/components/footer";
@@ -16,37 +27,36 @@ import PageTitle from "~/components/page-title";
 import Product from "~/components/product-item";
 import { firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
-import { add_product } from "~/redux/cart/cart.actions";
+import { AppContext } from "~/context-api/app-provider";
+import { AuthContext } from "~/context-api/auth-provider";
+import useFirestore from "~/hooks/useFirsestore";
 
 const DetailProduct = () => {
   const params = useParams();
   const [product, setProduct] = useState();
-
   const [state, setState] = useState(1);
   const [tabIndex, setTabIndex] = useState(1);
-  const [db, setDb] = useState();
+  const { products } = useContext(AppContext);
+  const { user } = useContext(AuthContext);
+  const [checkClick, setCheckClick] = useState(false);
+  const [checkCart, setCheckCart] = useState(false);
+  const { cart } = useContext(AuthContext);
+
+  const formatNumber = (str) => {
+    const num = Number.parseInt(str);
+    const numFormat = num.toLocaleString("en-US");
+    return numFormat;
+  };
 
   const getProduct = async () => {
-    const docRef = doc(
-      firebase_store,
-      "products",
-      `product${params.productID}`
-    );
-    const docSnap = await getDoc(docRef);
-    const querySnapshot = await getDocs(collection(firebase_store, "products"));
-    const arr = [];
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      // console.log(doc.id, " => ", doc.data());
-      arr.push(doc.data());
-    });
-    setDb(arr);
-
+    const ref = doc(firebase_store, "products", `product${params.productID}`);
+    const docSnap = await getDoc(ref);
     if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
-      setProduct(docSnap.data());
+      // Convert to City object
+      const res = docSnap.data();
+      setProduct(res);
+      // Use a City instance method
     } else {
-      // doc.data() will be undefined in this case
       console.log("No such document!");
     }
   };
@@ -55,13 +65,62 @@ const DetailProduct = () => {
     getProduct();
   }, [params.productID]);
 
-  const formatNumber = (str) => {
-    const num = Number.parseInt(str);
-    const numFormat = num.toLocaleString("en-US");
-    return numFormat;
+  const AddCart = async () => {
+    let check = false;
+    const q = query(
+      collection(firebase_store, "cart"),
+      where("id", "==", Number(params.productID))
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const res = [];
+      querySnapshot.forEach((doc) => {
+        res.push(doc.data());
+      });
+      if (res.length > 0) {
+        setCheckCart(true);
+        // console.log("run unsubscribe function");
+      }
+    });
+    if (checkCart == false) {
+      const docRef = await setDoc(
+        doc(firebase_store, "cart", `product${product.id}`),
+        {
+          uid: user.uid,
+          ...product,
+          quantity: state,
+        }
+      );
+    } else {
+      const productRef = doc(firebase_store, "cart", `product${product.id}`);
+      const thisProduct = cart.find((item) => item.id == product.id);
+      const qtt = thisProduct.quantity + state;
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(productRef, {
+        quantity: qtt,
+      });
+    }
   };
 
-  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    if (!user) {
+      alert("Vui lòng đăng nhập để thêm sản phẩm");
+    } else {
+      // console.log(user);
+      AddCart();
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (!user) {
+      alert("Vui lòng đăng nhập để thêm sản phẩm");
+    } else {
+    }
+  };
+
+  useEffect(() => {
+    setCheckCart(false);
+    setState(1);
+  }, [params.productID]);
 
   return (
     <>
@@ -156,17 +215,18 @@ const DetailProduct = () => {
                       <span
                         className="ml-1"
                         onClick={() => {
-                          // console.log({ ...product, quantity: state });
-                          dispatch(
-                            add_product({ ...product, quantity: state })
-                          );
+                          setCheckClick(!checkClick);
+                          handleAddToCart();
                         }}
                       >
                         Thêm vào giỏ hàng
                       </span>
                       <span className="absolute top-0 left-0 right-0 bottom-0 bg-sky-400 w-0 transition-all ease-linear duration-200 z-[-1] group-hover:w-full"></span>
                     </button>
-                    <button className="flex items-center ml-5 bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] font-semibold">
+                    <button
+                      className="flex items-center ml-5 bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] font-semibold"
+                      onClick={() => handleBuyNow()}
+                    >
                       <FontAwesomeIcon icon={faCheck} />
                       <span className="ml-1">Mua ngay</span>
                       <span className="absolute top-0 left-0 right-0 bottom-0 bg-sky-400 w-0 transition-all ease-linear duration-200 z-[-1] group-hover:w-full"></span>
@@ -220,16 +280,12 @@ const DetailProduct = () => {
                   Sản phẩm liên quan{" "}
                 </Link>
                 <div className="grid gap-4 grid-cols-4 mb-10">
-                  {db == null ? (
+                  {products == null ? (
                     <Loading />
                   ) : (
-                    db.map((item) => {
+                    products.map((item) => {
                       if (item.id < 6) {
-                        return (
-                          <Product
-                            product = {item}
-                          />
-                        );
+                        return <Product product={item} key={item.id} />;
                       }
                     })
                   )}

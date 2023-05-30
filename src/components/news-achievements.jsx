@@ -1,59 +1,25 @@
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
 import Blog from "./blog";
+import { AppContext } from "~/context-api/app-provider";
 
-const blogData = [
-  {
-    id: 1,
-    name: "Vinmec lập các chốt kiểm dịch 2019 - nCoV",
-    date: "30/03/2020",
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/articles/kham-suc-khoe-the-xanh-la-gi-1.jpg?v=1585508387523",
-  },
-  {
-    id: 1,
-    name: "Vinmec lập các chốt kiểm dịch 2019 - nCoV",
-    date: "30/03/2020",
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/articles/kham-suc-khoe-the-xanh-la-gi-1.jpg?v=1585508387523",
-  },
-  {
-    id: 1,
-    name: "Vinmec lập các chốt kiểm dịch 2019 - nCoV",
-    date: "30/03/2020",
-    imgSrc:
-      "https://bizweb.dktcdn.net/thumb/large/100/382/483/articles/kham-suc-khoe-the-xanh-la-gi-1.jpg?v=1585508387523",
-  },
-];
 const NewsAchievements = () => {
-  const [data, setData] = useState([]);
-
-  const getDataNews = async () => {
-    const querySnapshot = await getDocs(collection(firebase_store, "blogs"));
-    const array = [];
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      array.push(doc.data());
-    });
-    setData(array);
-  };
-
-  useEffect(() => {
-    getDataNews();
-    // console.log(data)
-  }, []);
+  const { posts } = useContext(AppContext);
 
   return (
     <div className="grid grid-cols-2 gap-0">
       <div className="pb-40 pt-16 text-[#444] font-bold pl-container bg-[#f6f7f9]">
-        <Link to={routes.news} className="block text-3.5xl mb-4 transition-all duration-200 hover:text-sky-500">
+        <Link
+          to={routes.news}
+          className="block text-3.5xl mb-4 transition-all duration-200 hover:text-sky-500"
+        >
           {" "}
           Tin & Sự Kiện{" "}
         </Link>
-        {data.map((item) => {
+        {posts.map((item) => {
           if (item.id <= 3) {
             return <Blog data={item} key={item.id} />;
           }
