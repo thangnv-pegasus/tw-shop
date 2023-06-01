@@ -28,8 +28,6 @@ const AuthProvider = ({ children }) => {
           setCart(arr);
         });
       } else {
-        // User is signed out
-        // ...
         setCart([]);
       }
     });

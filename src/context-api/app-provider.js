@@ -10,6 +10,7 @@ export const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [inforOrder, setInforOrder] = useState({})
   const {user} = useContext(AuthContext)
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const AppProvider = ({ children }) => {
   
 
   return (
-    <AppContext.Provider value={{ products, posts }}>
+    <AppContext.Provider value={{ products, posts, setInforOrder, inforOrder }}>
       {posts.length === 0 || products.length === 0 ? (
         <LoadingSpinner />
       ) : (

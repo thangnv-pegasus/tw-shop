@@ -63,6 +63,7 @@ module.exports = {
       gridTemplateColumns: {
         cols_5_7: "5fr 7fr",
         cols_7_5: "7fr 5fr",
+        "8_4": "8fr 4fr",
         "3_9": "3fr 9fr",
       },
       minHeight: {

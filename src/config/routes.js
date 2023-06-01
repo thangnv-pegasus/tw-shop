@@ -19,7 +19,8 @@ const routes = {
   blog: "/blog/:blogID",
   featuredProduct: "/featured-products",
   cartPage: "/shopping-cart",
-  test: '/test'
+  payPage: '/pay',
+  orderCompleted: '/completed'
 };
 
 export default routes;

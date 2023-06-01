@@ -8,7 +8,7 @@ const Button = ({ text, className = "", linkTo }) => {
   if(linkTo){
     return (
       <Link to={linkTo}
-        className={`inline-flex items-center bg-sky-500 text-sm mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] ${className}`}
+        className={`text-sm ${className} inline-flex items-center bg-sky-500 mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] `}
       >
         {text}
         <span className="ml-1 font-bold">
@@ -20,7 +20,7 @@ const Button = ({ text, className = "", linkTo }) => {
   }else{
     return (
       <button
-        className={`flex items-center bg-sky-500 text-sm mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] ${className}`}
+        className={`text-sm ${className} flex items-center bg-sky-500 mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] `}
       >
         {text}
         <span className="ml-1 font-bold">

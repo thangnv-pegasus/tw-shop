@@ -20,6 +20,7 @@ import {
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import AddToCartModal from "~/components/add-to-cart-modal";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
 import Loading from "~/components/loading";
@@ -37,10 +38,11 @@ const DetailProduct = () => {
   const [state, setState] = useState(1);
   const [tabIndex, setTabIndex] = useState(1);
   const { products } = useContext(AppContext);
-  const { user } = useContext(AuthContext);
   const [checkClick, setCheckClick] = useState(false);
   const [checkCart, setCheckCart] = useState(false);
-  const { cart } = useContext(AuthContext);
+  const [openAddToCartModal, setOpenAddToCartModal] = useState(false);
+
+  const { cart, user } = useContext(AuthContext);
 
   const formatNumber = (str) => {
     const num = Number.parseInt(str);
@@ -83,7 +85,7 @@ const DetailProduct = () => {
     });
     if (checkCart == false) {
       const docRef = await setDoc(
-        doc(firebase_store, "cart", `product${product.id}`),
+        doc(firebase_store, "cart", `product${product.id}_${user.uid}`),
         {
           uid: user.uid,
           ...product,
@@ -91,7 +93,7 @@ const DetailProduct = () => {
         }
       );
     } else {
-      const productRef = doc(firebase_store, "cart", `product${product.id}`);
+      const productRef = doc(firebase_store, "cart", `product${product.id}_${user.uid}`);
       const thisProduct = cart.find((item) => item.id == product.id);
       const qtt = thisProduct.quantity + state;
       // Set the "capital" field of the city 'DC'
@@ -105,8 +107,8 @@ const DetailProduct = () => {
     if (!user) {
       alert("Vui lòng đăng nhập để thêm sản phẩm");
     } else {
-      // console.log(user);
       AddCart();
+      setOpenAddToCartModal(true);
     }
   };
 
@@ -296,6 +298,12 @@ const DetailProduct = () => {
         )}
       </div>
       <Footer />
+      {openAddToCartModal && (
+        <AddToCartModal
+          product={product}
+          setOpenAddToCartModal={setOpenAddToCartModal}
+        />
+      )}
     </>
   );
 };

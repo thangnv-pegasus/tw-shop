@@ -1,7 +1,14 @@
 import { faFacebookF, faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  getAdditionalUserInfo,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "~/components/footer";
@@ -24,7 +31,8 @@ const SignIn = () => {
 const SigninForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
   const nav = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,16 +57,47 @@ const SigninForm = () => {
             localStorage.setItem("admin", "false");
           }
           nav("/");
-          // window.location.reload();
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
-        // ...
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const SignInWithGoogle = async () => {
+    const res = await signInWithPopup(firebase_auth, googleProvider);
+    const check = getAdditionalUserInfo(res);
+    const { displayName, email, uid, photoURL } = res.user;
+    if (check.isNewUser == true) {
+      await setDoc(doc(firebase_store, "users", uid), {
+        displayName,
+        photoURL,
+        uid,
+        email,
+        timestamp: serverTimestamp(),
+      });
+    }
+
+    nav("/");
+  };
+
+  const SignInWithFacebook = async () => {
+    const res = await signInWithPopup(firebase_auth, facebookProvider);
+    const check = getAdditionalUserInfo(res);
+    const { displayName, email, uid, photoURL } = res.user;
+    if (check.isNewUser == true) {
+      await setDoc(doc(firebase_store, "users", uid), {
+        displayName,
+        photoURL,
+        uid,
+        email,
+        timestamp: serverTimestamp(),
+      });
+    }
+
+    nav("/");
   };
 
   return (
@@ -106,13 +145,19 @@ const SigninForm = () => {
         <div className="text-center my-8 text-sm">
           <p>Hoặc đăng nhập bằng</p>
           <div className="flex items-center justify-center pb-5">
-            <div className="flex items-center bg-[#3b5998] text-white my-2 cursor-pointer mx-2 select-none">
+            <div
+              className="flex items-center bg-[#3b5998] text-white my-2 cursor-pointer mx-2 select-none"
+              onClick={() => SignInWithFacebook()}
+            >
               <span className="py-2 px-4 border-solid border-r-[1px] border-[#244488] text-base">
                 <FontAwesomeIcon icon={faFacebookF} />
               </span>
               <p className="py-2 px-2 text-sm">Facebook</p>
             </div>
-            <div className="flex items-center bg-[#e14b33] text-white my-2 cursor-pointer mx-2 select-none">
+            <div
+              className="flex items-center bg-[#e14b33] text-white my-2 cursor-pointer mx-2 select-none"
+              onClick={() => SignInWithGoogle()}
+            >
               <span className="py-2 px-3 border-solid border-r-[1px] border-[#c2412d] text-base">
                 <FontAwesomeIcon icon={faGooglePlusG} />
               </span>

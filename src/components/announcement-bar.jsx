@@ -62,7 +62,7 @@ const AnnouncementBar = () => {
             <>
               <Link className="text-sm font-medium transition-all duration-15">
                 {/* {user.last_name} */}
-                {user.fieldName}
+                {user.displayName}
               </Link>
               <span className="mx-1">/</span>
               <p
