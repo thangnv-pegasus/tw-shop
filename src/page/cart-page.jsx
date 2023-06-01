@@ -107,13 +107,13 @@ const ProductItem = ({ product }) => {
   const { user } = useContext(AuthContext);
 
   const deleteProduct = async () => {
-    await deleteDoc(doc(firebase_store, "cart", `product${product.id}_${user.uid}`));
+    await deleteDoc(doc(firebase_store, `cart_${user.uid}`, `product${product.id}_${user.uid}`));
   };
 
   const UpdateProduct = async (type) => {
     const washingtonRef = doc(
       firebase_store,
-      "cart",
+      `cart_${user.uid}`,
       `product${product.id}_${user.uid}`
     );
 
@@ -134,7 +134,7 @@ const ProductItem = ({ product }) => {
   };
 
   return (
-    <div className="flex border-t-[1px] border-solid border-[rgba(0,0,0,.09)] py-5 items-center">
+    <div className="flex border-t-[1px] border-solid border-[rgba(0,0,0,.09)] py-5 items-center select-none">
       <div className="w-1/6">
         <div className="w-[6.125rem] h-[6.125rem] overflow-hidden mx-3">
           <img

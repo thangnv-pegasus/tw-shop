@@ -21,13 +21,6 @@ const NavBar = () => {
     nav(`/search-page/${text}`);
   };
 
-  // useEffect(() => {
-  //   const storage = localStorage.getItem("user");
-  //   if (storage == "admin") {
-  //     setAdmin(true);
-  //   }
-  // });
-
   const count = 0;
 
   return (
@@ -123,7 +116,7 @@ const NavBar = () => {
               className="flex items-center relative mx-5 text-base font-bold text-textColor py-5 transition-all duration-150 group hover:text-sky-700"
             >
               Sản phẩm{" "}
-              <span className="ml-1">
+              {/* <span className="ml-1">
                 {" "}
                 <FontAwesomeIcon icon={faAngleDown} />{" "}
               </span>
@@ -160,7 +153,7 @@ const NavBar = () => {
                     Máy chụp Xquang
                   </Link>
                 </li>
-              </ul>
+              </ul> */}
             </NavLink>
             <NavLink
               to={routes.news}

@@ -17,8 +17,7 @@ const AuthProvider = ({ children }) => {
         setUser({ displayName, email, uid, photoURL });
 
         const q = query(
-          collection(firebase_store, "cart"),
-          where("uid", "==", uid)
+          collection(firebase_store, `cart_${user.uid}`)
         );
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
           const arr = [];
@@ -33,18 +32,6 @@ const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const q = query(collection(firebase_store, "cart"), where("uid", "==", user?.uid));
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const cities = [];
-  //     querySnapshot.forEach((doc) => {
-  //       cities.push(doc.data().name);
-  //     });
-  //     console.log('cart',cities);
-  //   });
-  // }, [user]);
-
-  // console.log(user?.uid);
   return (
     <AuthContext.Provider value={{ user, cart }}>
       {children}

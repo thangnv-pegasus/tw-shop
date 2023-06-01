@@ -261,7 +261,7 @@ const Products = () => {
                     htmlFor="price1"
                     className="checkbox_brand flex items-center my-3"
                   >
-                    <input type="checkbox" id="price1" hidden />
+                    <input type="checkbox" id="price1" hidden/>
                     <span className="checkmark"></span>
                     <span className="text-sm">Giá dưới 1.000.000đ</span>
                   </label>
@@ -271,7 +271,7 @@ const Products = () => {
                     htmlFor="price2"
                     className="checkbox_brand flex items-center my-3"
                   >
-                    <input type="checkbox" id="price2" />
+                    <input type="checkbox" id="price2" hidden/>
                     <span className="checkmark"></span>
                     <span className="text-sm">1.000.000đ - 2.000.000đ</span>
                   </label>
@@ -340,7 +340,7 @@ const Products = () => {
           <div className="grid grid-cols-3 gap-7">
             {products.map((item, index) => {
               let url = item.imgUrl;
-              return <Product product={item} />;
+              return <Product product={item} key={index} />;
             })}
           </div>
         </div>

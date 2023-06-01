@@ -5,7 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
 import { AppContext } from "~/context-api/app-provider";
 import { AuthContext } from "~/context-api/auth-provider";
@@ -20,6 +20,7 @@ const PayPage = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [text, setText] = useState("");
+  const nav = useNavigate();
   const formatNumber = (num) => {
     return num.toLocaleString();
   };
@@ -38,6 +39,30 @@ const PayPage = () => {
       setTransportFee(0);
     }
   }, [address]);
+
+  const validate = () => {
+    if (name == "" || email == "" || address == "" || phone == "") {
+      alert("Vui lòng nhập đầy đủ thông tin");
+    } else if (check == false) {
+      alert("Vui lòng chọn phương thức thanh toán");
+    } else {
+      nav(routes.orderCompleted);
+      setInforOrder((pre) => {
+        const temp = [...cart];
+        return {
+          ...pre,
+          cart: temp,
+          name,
+          email,
+          address,
+          phone,
+          note: text,
+          transportFee,
+          sum_price: sum,
+        };
+      });
+    }
+  };
   return (
     <div className="grid grid-cols-8_4 h-screen overflow-hidden">
       <div className="py-7 pl-24">
@@ -215,28 +240,14 @@ const PayPage = () => {
               </span>
               Quay về giỏ hàng
             </Link>
-            <Link
-              to={routes.orderCompleted}
+            <button
               className="block bg-[#357ebd] text-white px-5 py-3 rounded-md transition-all duration-100 ease-linear hover:opacity-80 uppercase text-sm"
-              onClick={() =>
-                setInforOrder((pre) => {
-                  const temp = [...cart];
-                  return {
-                    ...pre,
-                    cart: temp,
-                    name,
-                    email,
-                    address,
-                    phone,
-                    note: text,
-                    transportFee,
-                    sum_price: sum,
-                  };
-                })
-              }
+              onClick={() => {
+                validate();
+              }}
             >
               Đặt Hàng
-            </Link>
+            </button>
           </div>
         </div>
       </div>

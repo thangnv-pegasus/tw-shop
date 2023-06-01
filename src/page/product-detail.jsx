@@ -19,7 +19,7 @@ import {
 } from "firebase/firestore";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AddToCartModal from "~/components/add-to-cart-modal";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
@@ -41,7 +41,7 @@ const DetailProduct = () => {
   const [checkClick, setCheckClick] = useState(false);
   const [checkCart, setCheckCart] = useState(false);
   const [openAddToCartModal, setOpenAddToCartModal] = useState(false);
-
+  const nav = useNavigate();
   const { cart, user } = useContext(AuthContext);
 
   const formatNumber = (str) => {
@@ -68,9 +68,8 @@ const DetailProduct = () => {
   }, [params.productID]);
 
   const AddCart = async () => {
-    let check = false;
     const q = query(
-      collection(firebase_store, "cart"),
+      collection(firebase_store, `cart_${user.uid}`),
       where("id", "==", Number(params.productID))
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -85,7 +84,11 @@ const DetailProduct = () => {
     });
     if (checkCart == false) {
       const docRef = await setDoc(
-        doc(firebase_store, "cart", `product${product.id}_${user.uid}`),
+        doc(
+          firebase_store,
+          `cart_${user.uid}`,
+          `product${product.id}_${user.uid}`
+        ),
         {
           uid: user.uid,
           ...product,
@@ -93,7 +96,11 @@ const DetailProduct = () => {
         }
       );
     } else {
-      const productRef = doc(firebase_store, "cart", `product${product.id}_${user.uid}`);
+      const productRef = doc(
+        firebase_store,
+        `cart_${user.uid}`,
+        `product${product.id}_${user.uid}`
+      );
       const thisProduct = cart.find((item) => item.id == product.id);
       const qtt = thisProduct.quantity + state;
       // Set the "capital" field of the city 'DC'
@@ -116,6 +123,8 @@ const DetailProduct = () => {
     if (!user) {
       alert("Vui lòng đăng nhập để thêm sản phẩm");
     } else {
+      AddCart();
+      nav(routes.payPage);
     }
   };
 
@@ -227,7 +236,9 @@ const DetailProduct = () => {
                     </button>
                     <button
                       className="flex items-center ml-5 bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] font-semibold"
-                      onClick={() => handleBuyNow()}
+                      onClick={() => {
+                        handleBuyNow();
+                      }}
                     >
                       <FontAwesomeIcon icon={faCheck} />
                       <span className="ml-1">Mua ngay</span>
