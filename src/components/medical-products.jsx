@@ -1,6 +1,6 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "~/css/swiper.scss";
@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Grid } from "swiper";
 import Product from "./product-item";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "~/context-api/app-provider";
 
 const MedicalProduct = () => {
@@ -46,15 +46,33 @@ const MedicalProduct = () => {
             pagination={{
               clickable: true,
             }}
+            // loop={true}
+            in
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+            }}
             modules={[Grid]}
             className="mySwiper"
           >
             {products.map((item, index) => {
-              return (
-                <SwiperSlide key={index}>
-                  <Product product={item} />
-                </SwiperSlide>
-              );
+              if (item.id < 8) {
+                return (
+                  <SwiperSlide key={index}>
+                    <Product product={item} />
+                  </SwiperSlide>
+                );
+              }
             })}
           </Swiper>
         </div>
@@ -64,9 +82,18 @@ const MedicalProduct = () => {
 };
 
 const SearchForm = ({ value }) => {
+  const [text, setText] = useState("");
+  const nav = useNavigate();
+  const handleSubmit = () => {
+    nav(`/search-page/${text}`);
+  };
   return (
     <div className="text-center mb-8">
       <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
         action=""
         method=""
         className="bg-white inline-flex border-[#ccc] border-solid border-[1px] items-center rounded-full overflow-hidden"
@@ -75,6 +102,8 @@ const SearchForm = ({ value }) => {
           type="text"
           placeholder="Tìm sản phẩm khác..."
           className="outline-none text-sm font-medium text-[#444] h-11 px-4 block w-56"
+          onChange={(e) => setText(e.target.value)}
+          value={text}
         />
         <button type="submit" className="h-10 text-sky-500 px-5">
           <FontAwesomeIcon icon={faMagnifyingGlass} />

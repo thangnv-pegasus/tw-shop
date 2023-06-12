@@ -30,8 +30,14 @@ import { firebase_store } from "~/config/firebase-config";
 import routes from "~/config/routes";
 import { AppContext } from "~/context-api/app-provider";
 import { AuthContext } from "~/context-api/auth-provider";
-import useFirestore from "~/hooks/useFirsestore";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Pagination } from "swiper";
 const DetailProduct = () => {
   const params = useParams();
   const [product, setProduct] = useState();
@@ -144,30 +150,9 @@ const DetailProduct = () => {
         ) : (
           <>
             <PageTitle title={product.name} />
-            <div className="max-w-container mx-auto">
+            <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
               <div className="py-10 grid grid-cols-2 gap-3">
-                <div>
-                  <div className="w-[555px] h-[555px] mb-5">
-                    <img
-                      src={product.imgUrl[0]}
-                      alt="product image"
-                      className="object-cover object-center w-full h-full"
-                    />
-                  </div>
-                  <div className="flex">
-                    {product.imgUrl.map((src, index) => {
-                      return (
-                        <div className="w-[90px] h-[90px] mr-3" key={index}>
-                          <img
-                            src={src}
-                            alt="product image"
-                            className="object-cover object-center w-full h-full"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <ProductImage productUrl={product.imgUrl} />
                 <div>
                   <h2 className="text-3xl text-[#444] font-normal mb-4">
                     {product.name}
@@ -292,17 +277,43 @@ const DetailProduct = () => {
                   {" "}
                   Sản phẩm liên quan{" "}
                 </Link>
-                <div className="grid gap-4 grid-cols-4 mb-10">
+                <Swiper
+                  slidesPerView={3}
+                  spaceBetween={30}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 3,
+                      spaceBetween: 40,
+                    },
+                    1024: {
+                      slidesPerView: 4,
+                      spaceBetween: 50,
+                    },
+                  }}
+                  modules={[Pagination]}
+                  className="mySwiper"
+                >
                   {products == null ? (
                     <Loading />
                   ) : (
                     products.map((item) => {
-                      if (item.id < 6) {
-                        return <Product product={item} key={item.id} />;
+                      if (item.id < 5) {
+                        return (
+                          <SwiperSlide key={item.id}>
+                            <Product product={item} />
+                          </SwiperSlide>
+                        );
                       }
                     })
                   )}
-                </div>
+                </Swiper>
               </div>
             </div>
           </>
@@ -316,6 +327,40 @@ const DetailProduct = () => {
         />
       )}
     </>
+  );
+};
+
+const ProductImage = ({ productUrl }) => {
+  const [imgSelect, setImgSelect] = useState(0);
+  return (
+    <div>
+      <div className="w-full h-auto mb-5 rounded-md">
+        <img
+          src={productUrl[imgSelect]}
+          alt="product image"
+          className="object-cover object-center w-full h-full rounded-md"
+        />
+      </div>
+      <div className="flex">
+        {productUrl.map((src, index) => {
+          return (
+            <div
+              className={`w-[90px] h-[90px] mr-3 transition-all p-1 ease-linear duration-100 border-[1px] border-solid border-transparent hover:border-sky-600 rounded-sm ${
+                imgSelect === index ? "border-sky-600" : "border-transparent"
+              }`}
+              key={index}
+              onClick={() => setImgSelect(index)}
+            >
+              <img
+                src={src}
+                alt="product image"
+                className="object-cover object-center w-full h-full rounded-sm"
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

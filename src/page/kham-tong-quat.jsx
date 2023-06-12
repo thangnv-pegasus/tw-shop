@@ -9,7 +9,7 @@ const KhamTongQuat = () => {
     <>
       <Header />
       <PageTitle title="Khám tổng quát" />
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
         <div className="py-10 text-sm text-[#444] leading-[1.7]">
           <p className="pb-4">
             - Xét nghiệm chỉ số máu (nhằm phát hiện tình trạng thiếu máu và một

@@ -1,5 +1,6 @@
 import {
   faAngleDown,
+  faBars,
   faBasketShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import routes from "~/config/routes";
+import { AppContext } from "~/context-api/app-provider";
 import { AuthContext } from "~/context-api/auth-provider";
 
 const NavBar = () => {
@@ -15,17 +17,22 @@ const NavBar = () => {
   const [admin, setAdmin] = useState(false);
   const nav = useNavigate();
   const { cart } = useContext(AuthContext);
+  const { openMenu, setOpenMenu } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     nav(`/search-page/${text}`);
   };
 
-  const count = 0;
-
   return (
     <div>
-      <div className="max-w-container mx-auto flex justify-between items-center">
+      <div className="lg:max-w-container lg:px-0 lg:mx-auto md:w-full md:max-w-full sm:px-4 flex justify-between items-center">
+        <div
+          className="sm:block lg:hidden cursor-pointer text-2xl text-[#444]"
+          onClick={() => setOpenMenu(true)}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </div>
         <div className="flex items-center">
           <Link to={routes.home} className="block">
             <img
@@ -34,7 +41,7 @@ const NavBar = () => {
               className="w-full h-16 object-cover object-center block my-3"
             />
           </Link>
-          <div className="flex items-center mx-4">
+          <div className="flex items-center mx-4 lg:flex sm:hidden">
             <NavLink
               to={routes.home}
               style={(nav) => (nav.isActive ? { color: "rgb(3 105 161)" } : {})}

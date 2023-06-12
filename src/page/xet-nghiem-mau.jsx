@@ -9,7 +9,7 @@ const XetNghiemMau = () => {
     <>
       <Header />
       <PageTitle title="Xét nghiệm máu" />
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
         <div className="py-10 text-sm text-[#444] leading-10">
           <p>
             Có rất nhiểu bệnh có thể phát hiện được qua xét nghiệm máu. Thông

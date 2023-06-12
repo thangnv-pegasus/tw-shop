@@ -28,8 +28,8 @@ const ContactPage = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
-      <div className="max-w-container mx-auto">
-        <div className="grid grid-cols-cols_5_7 gap-5 px-20 py-28 bg-white shadow-subNav text-[#6e7874] z-10 translate-y-[-25%] rounded-3xl">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4">
+        <div className="grid md:grid-cols-cols_5_7 sm:grid-cols-1 py-8 px-4 gap-5 lg:px-20 lg:py-28 md:px-4 md:py-6 bg-white shadow-subNav text-[#6e7874] z-10 translate-y-[-25%] rounded-3xl">
           <div>
             <Link to={routes.home} className="block w-64 h-auto mb-5">
               <img
@@ -38,7 +38,7 @@ const ContactPage = () => {
                 className="block object-cover object-center w-full h-full"
               />
             </Link>
-            <p className="text-[#6e7874] py-4 pr-32 text-sm leading-6 pb-8">
+            <p className="text-[#6e7874] lg:pr-32 text-sm leading-6 lg:pb-8 md:pr-5 md:py-4 md:pb-6">
               Ego Medical Center tự hào về các kỹ năng được đào tạo cần thiết
               cho việc chuẩn bị kiểm tra đa dạng. Chúng tôi tin tưởng rằng chẩn
               đoán kịp thời có thể loại bỏ vết sẹo của nhiều bệnh nghiêm trọng.
@@ -78,7 +78,7 @@ const ContactPage = () => {
           </div>
           <form className="block text-[#444]">
             <h2 className="text-2xl mb-8 mt-5">Nhập thông tin của bạn</h2>
-            <div className="grid grid-cols-2 flex-wrap gap-5 text-[#444] text-sm">
+            <div className="grid md:grid-cols-2 sm:grid-cols-1 flex-wrap gap-5 text-[#444] text-sm">
               <input
                 type="text"
                 className="block w-full outline-none bg-[#ebebeb] h-11 px-4 rounded-lg"

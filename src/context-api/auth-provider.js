@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, cart }}>
+    <AuthContext.Provider value={{ user, cart, setCart }}>
       {children}
     </AuthContext.Provider>
   );

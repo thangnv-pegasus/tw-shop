@@ -8,10 +8,10 @@ const BookingPage = () => {
     <>
       <Header />
       <PageTitle title="Đặt lịch" />
-      <div className="bg-bookingBg pt-28 pb-16 bg-no-repeat h-full bg-bottom_left">
-        <div className="max-w-container mx-auto">
+      <div className="bg-bookingBg lg:pt-28 sm:pt-0 pb-16 bg-no-repeat h-full bg-bottom_left">
+        <div className="lg:max-w-container lg:mx-auto md:max-w-full md:px-4 lg:px-0">
           <div className="py-10">
-            <div className="grid grid-cols-cols_7_5">
+            <div className="grid lg:grid-cols-cols_7_5 sm:grid-cols-1">
               <form method="">
                 <div className="px-8">
                   <h2 className="text-3.5xl font-semibold text-[#444] text-center pb-2">
@@ -56,7 +56,7 @@ const BookingPage = () => {
                   className="flex w-full justify-center"
                 />
               </form>
-              <div>
+              <div className="sm:hidden lg:block">
                 <img
                   src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/banner-appointment.png?1677379206119"
                   alt="img"

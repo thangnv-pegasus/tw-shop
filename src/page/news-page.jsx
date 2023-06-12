@@ -17,7 +17,7 @@ const News = () => {
     <>
       <Header />
       <PageTitle title="Tin tức" />
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
         <div className="py-10">
           <h2 className="text-left font-semibold text-[#444] text-4xl">
             Tin tức
@@ -25,7 +25,7 @@ const News = () => {
           {posts == null ? (
             <Loading />
           ) : (
-            <div className="py-10 grid grid-cols-3 gap-10 gap-x-14">
+            <div className="py-10 grid lg:grid-cols-3 md:grid-cols-2 gap-10 gap-x-14">
               {posts.map((item) => {
                 return <BlogItem data={item} key={item.id} />;
               })}

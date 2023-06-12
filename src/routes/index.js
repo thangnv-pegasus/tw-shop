@@ -19,6 +19,7 @@ import Blog from "~/page/detail-blog";
 import ShoppingCart from "~/page/cart-page";
 import PayPage from "~/page/pay-page";
 import OrderCompleted from "~/page/order-completed";
+import Admin from "~/page/ADMIN";
 
 const publicRoutes = [
   {
@@ -105,6 +106,10 @@ const publicRoutes = [
     path: routes.orderCompleted,
     component: OrderCompleted,
   },
+  {
+    path: routes.adminPage,
+    component: Admin
+  }
 ];
 
 export default publicRoutes;

@@ -40,7 +40,7 @@ const ShoppingCart = () => {
     <>
       <Header />
       <PageTitle title="Giỏ hàng" />
-      <div className="max-w-container mx-auto py-10">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0 py-10">
         {cart.length == 0 ? (
           <>
             <p className="my-4 text-sm text-[#444]">

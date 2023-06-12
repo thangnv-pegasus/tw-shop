@@ -2,7 +2,14 @@ import { useState } from "react";
 import "~/css/custom.scss";
 import Button from "~/components/button";
 import routes from "~/config/routes";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Pagination } from "swiper";
 const contentData = [
   {
     imgSrc:
@@ -72,7 +79,7 @@ const contentData = [
 const ServiceTab = () => {
   return (
     <div className="bg-[#f6f7f9] min-h-[500px] w-full py-24">
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:px-4 sm:max-w-full">
         <h2 className="relative text-center text-4xl pb-3 leading-[3rem] font-bold text-[#444]">
           Xét nghiệm chuẩn đoán
           <span className="absolute top-full left-1/2 w-14 h-[3px] bg-sky-500 translate-x-[-50%] "></span>
@@ -88,116 +95,151 @@ const Tab = () => {
 
   return (
     <div className="">
-      <ul className="grid grid-cols-6 gap-3 my-10">
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(1)}
-          style={state === 1 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_1.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 1 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold transition-all duration-200 text-[#444] group-hover:text-white"
-            style={state === 1 ? { color: "white" } : {}}
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 10,
+          },
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(1)}
+            style={state === 1 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Tầm soát ung thư
-          </p>
-        </li>
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(2)}
-          style={state === 2 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_2.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 2 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
-            style={state === 2 ? { color: "white" } : {}}
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_1.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 1 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold transition-all duration-200 text-[#444] group-hover:text-white"
+              style={state === 1 ? { color: "white" } : {}}
+            >
+              Tầm soát ung thư
+            </p>
+          </li>
+        </SwiperSlide>
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(2)}
+            style={state === 2 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Mô học
-          </p>
-        </li>
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(3)}
-          style={state === 3 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_3.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 3 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
-            style={state === 3 ? { color: "white" } : {}}
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_2.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 2 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              style={state === 2 ? { color: "white" } : {}}
+            >
+              Mô học
+            </p>
+          </li>
+        </SwiperSlide>
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(3)}
+            style={state === 3 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Khám tổng quát
-          </p>
-        </li>
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(4)}
-          style={state === 4 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_4.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 4 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
-            style={state === 4 ? { color: "white" } : {}}
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_3.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 3 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              style={state === 3 ? { color: "white" } : {}}
+            >
+              Khám tổng quát
+            </p>
+          </li>
+        </SwiperSlide>
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(4)}
+            style={state === 4 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Xét nghiệm máu
-          </p>
-        </li>
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(5)}
-          style={state === 5 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_5.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 5 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
-            style={state === 5 ? { color: "white" } : {}}
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_4.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 4 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              style={state === 4 ? { color: "white" } : {}}
+            >
+              Xét nghiệm máu
+            </p>
+          </li>
+        </SwiperSlide>
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(5)}
+            style={state === 5 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Xét nghiệm di truyền
-          </p>
-        </li>
-        <li
-          className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
-          onClick={() => setState(6)}
-          style={state === 6 ? { backgroundColor: "rgb(14 165 233)" } : {}}
-        >
-          <img
-            src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_6.png?1664096870043"
-            alt="service1"
-            className="w-22 h-auto mx-auto service-img"
-            style={state === 6 ? { filter: "brightness(5)" } : {}}
-          />
-          <p
-            className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
-            style={state === 6 ? { color: "white" } : {}}
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_5.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 5 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              style={state === 5 ? { color: "white" } : {}}
+            >
+              Xét nghiệm di truyền
+            </p>
+          </li>
+        </SwiperSlide>
+        <SwiperSlide>
+          <li
+            className="bg-white px-3 py-8 cursor-pointer transition-all duration-200 group hover:bg-sky-500 service rounded-md"
+            onClick={() => setState(6)}
+            style={state === 6 ? { backgroundColor: "rgb(14 165 233)" } : {}}
           >
-            Tế bào học
-          </p>
-        </li>
-      </ul>
+            <img
+              src="https://bizweb.dktcdn.net/100/382/483/themes/758809/assets/icon_tab_6.png?1664096870043"
+              alt="service1"
+              className="w-22 h-auto mx-auto service-img"
+              style={state === 6 ? { filter: "brightness(5)" } : {}}
+            />
+            <p
+              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              style={state === 6 ? { color: "white" } : {}}
+            >
+              Tế bào học
+            </p>
+          </li>
+        </SwiperSlide>
+      </Swiper>
       {contentData.map((item, index) => {
         if (index + 1 == state) {
           return (
@@ -216,16 +258,16 @@ const Tab = () => {
 
 const TabContent = ({ imgSrc, title, content = [] }) => {
   return (
-    <div className="grid grid-cols-2 gap-3 text-[#444]">
-      <div>
-        <img src={imgSrc} alt="img" />
+    <div className="grid md:grid-cols-2 md:gap-3 sm:grid-cols-1 flex-wrap text-[#444] lg:mt-0 sm:mt-10">
+      <div className="">
+        <img src={imgSrc} alt="img" className="sm:mx-auto md:m-0 sm:mb-5"/>
       </div>
       <div>
         <h2 className="text-[1.75rem] font-semibold mb-5 ">{title}</h2>
         <div className="leading-7 text-[#787878]">
           {content.map((item, index) => {
             return (
-              <p key={index} className="my-2">
+              <p key={index} className="my-2 md:text-sm">
                 {item}
               </p>
             );

@@ -9,7 +9,7 @@ const TeBaoHoc = () => {
     <>
       <Header />
       <PageTitle title="Tế bào học"/>
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
         <div className="py-10 text-sm text-[#444] leading-7">
           <p className="pb-4">
             <b>Xét nghiệm tế bào học</b> (Cytology hoặc Cytopathology) là xét

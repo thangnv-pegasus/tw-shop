@@ -25,17 +25,17 @@ const AnnouncementBar = () => {
   };
 
   return (
-    <div className="w-full bg-sky-500">
-      <div className="max-w-container mx-auto text-white text-sm leading-10 font-medium flex justify-between">
-        <div className="flex items-center">
+    <div className="w-full bg-sky-500 sm:hidden md:block">
+      <div className="lg:max-w-container lg:w-full sm:w-full mx-auto text-white text-sm leading-10 font-medium flex justify-between">
+        <div className="flex items-center md:px-4 lg:px-0">
           <div className="flex items-center">
-            <span className="text-lg">
+            <span className="lg:text-lg md:text-sm">
               <FontAwesomeIcon icon={faClock} />
             </span>
             <p className="ml-2">Th2 - CN 9:00 AM - 21:00 PM </p>
           </div>
           <div className="flex items-center mx-10">
-            <span className="text-base">
+            <span className="lg;text-base md:text-sm">
               <FontAwesomeIcon icon={faPhone} />
             </span>
             <a
@@ -46,7 +46,7 @@ const AnnouncementBar = () => {
             </a>
           </div>
           <div className="flex items-center">
-            <span className="text-lg">
+            <span className="lg:text-lg md:text-sm">
               <FontAwesomeIcon icon={faEnvelope} />
             </span>
             <a
@@ -57,7 +57,7 @@ const AnnouncementBar = () => {
             </a>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="items-center sm:hidden lg:flex">
           {user ? (
             <>
               <Link className="text-sm font-medium transition-all duration-15">

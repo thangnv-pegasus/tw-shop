@@ -20,7 +20,8 @@ const routes = {
   featuredProduct: "/featured-products",
   cartPage: "/shopping-cart",
   payPage: '/pay',
-  orderCompleted: '/completed'
+  orderCompleted: '/completed',
+  adminPage: '/admin'
 };
 
 export default routes;

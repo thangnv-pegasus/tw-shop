@@ -3,7 +3,7 @@ import routes from "~/config/routes";
 
 const Blog = ({ data }) => {
   return (
-    <div className="text-[#444] flex max-w-480px mt-5">
+    <div className="text-[#444] flex lg:max-w-480px md:max-w-full mt-5">
       <Link to={`/blog/${data.id}`} className="w-158px h-auto block">
         <img
           src={data.img[0]}

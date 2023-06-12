@@ -5,10 +5,10 @@ import routes from "~/config/routes";
 
 const About = () => {
   return (
-    <div className="py-14 relative bg-aboutBg bg-top_right bg-fixed bg-no-repeat">
-      <div className="max-w-container mx-auto grid grid-cols-2 gap-5">
-        <ul className="grid grid-cols-2 gap-4 relative">
-          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 p-10">
+    <div className="py-14 relative bg-aboutBg bg-top_right bg-fixed bg-no-repeat md:px-4">
+      <div className="lg:max-w-container lg:mx-auto sm:w-full sm:px-4 sm:max-w-full grid md:grid-cols-2 md:gap-5 sm:grid-cols-1">
+        <ul className="grid sm:grid-cols-2 sm:gap-4 relative md:flex-wrap">
+          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 lg:p-10 sm:py-6 sm:pr-2 sm:pl-4">
             <p className="text-8xl text-sky-500 font-semibold transition-all duration-200 group-hover:text-white">
               1
             </p>
@@ -17,7 +17,7 @@ const About = () => {
               <span className="absolute top-full left-0 bg-sky-500 w-8 h-1 group-hover:bg-white"></span>
             </p>
           </li>
-          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 p-10">
+          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 lg:p-10 sm:py-6 sm:pr-2 sm:pl-4">
             <p className="text-8xl text-sky-500 font-semibold transition-all duration-200 group-hover:text-white">
               2
             </p>
@@ -26,7 +26,7 @@ const About = () => {
               <span className="absolute top-full left-0 bg-sky-500 w-8 h-1 group-hover:bg-white"></span>
             </p>
           </li>
-          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 p-10">
+          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 lg:p-10 sm:py-6 sm:pr-2 sm:pl-4">
             <p className="text-8xl text-sky-500 font-semibold transition-all duration-200 group-hover:text-white">
               3
             </p>
@@ -35,7 +35,7 @@ const About = () => {
               <span className="absolute top-full left-0 bg-sky-500 w-8 h-1 group-hover:bg-white"></span>
             </p>
           </li>
-          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 p-10">
+          <li className="text-textColor group transition-all duration-200 bg-white shadow-subNav hover:bg-sky-500 lg:p-10 sm:py-6 sm:pr-2 sm:pl-4">
             <p className="text-8xl text-sky-500 font-semibold transition-all duration-200 group-hover:text-white">
               4
             </p>
@@ -46,7 +46,7 @@ const About = () => {
           </li>
           <div className="bg-aboutBg2 bg-top_left bg-no-repeat absolute left-[-50%] top-0 z-[-1] w-[58.75rem] h-full"></div>
         </ul>
-        <div className="">
+        <div className="sm:mt-10 md:mt-0">
           <h2 className="text-sky-500 text-lg font-semibold mb-4">
             Giới thiệu
           </h2>

@@ -9,7 +9,7 @@ const TamSoatUngThu = () => {
     <>
       <Header />
       <PageTitle title="Tầm soát ung thư" />
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
         <div className="py-10 text-[#444] text-sm leading-[1.7]">
           <p className="pb-4">
             Mỗi năm Việt Nam có hơn 126.000 ca mắc mới mắc bệnh ung thư, trong

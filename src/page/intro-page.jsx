@@ -10,7 +10,7 @@ const IntroPage = () => {
       <Header />
 
       <PageTitle title="Giới thiệu" />
-      <div className="max-w-container mx-auto text-[#444] text-sm py-10 leading-6">
+      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0 text-[#444] text-sm py-10 leading-6">
         <p className="mb-4">
           Ra đời với sứ mệnh cung cấp những dịch vụ y tế cao cấp,{" "}
           <span className="font-bold">

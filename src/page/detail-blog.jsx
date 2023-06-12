@@ -8,11 +8,18 @@ import Loading from "~/components/loading";
 import PageTitle from "~/components/page-title";
 import { firebase_store } from "~/config/firebase-config";
 import { AppContext } from "~/context-api/app-provider";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+// import required modules
+import { Pagination } from "swiper";
 const Blog = () => {
   const param = useParams();
   const [data, setData] = useState();
-  const {posts} = useContext(AppContext)
+  const { posts } = useContext(AppContext);
   const getBlog = async () => {
     const arr = [];
     const docRef = doc(firebase_store, "blogs", `blog${param.blogID}`);
@@ -41,7 +48,7 @@ const Blog = () => {
         ) : (
           <>
             <PageTitle title={data.title} />
-            <div className="max-w-container mx-auto">
+            <div className="lg:max-w-container lg:mx-auto md:max-w-full md:px-4 lg:px-0">
               <div className="min-h-[600px] py-10 text-[#444]">
                 <h2 className="text-3.5xl font-semibold">{data.title}</h2>
                 <p className="py-4 text-sm font-medium opacity-90 mb-4">
@@ -49,7 +56,11 @@ const Blog = () => {
                   <span className="ml-4">Ngày: {data.date}</span>
                 </p>
                 <div>
-                  <img src={data.img[0]} alt="img" className="block mb-5 mx-auto"/>
+                  <img
+                    src={data.img[0]}
+                    alt="img"
+                    className="block mb-5 mx-auto"
+                  />
                   {data.content.map((item, index) => {
                     if (index < data.content.length - 1) {
                       return (
@@ -86,13 +97,39 @@ const Blog = () => {
 const RelatedBlog = ({ data }) => {
   return (
     <div>
-      <div className="grid grid-cols-4 gap-8 py-5">
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
         {data.map((blog) => {
           if (blog.id < 5) {
-            return <BlogItem data={blog} key={blog.id} />;
+            return (
+              <SwiperSlide key={blog.id}>
+                <BlogItem data={blog} />
+              </SwiperSlide>
+            );
           }
         })}
-      </div>
+      </Swiper>
     </div>
   );
 };

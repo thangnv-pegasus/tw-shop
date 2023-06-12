@@ -21,7 +21,7 @@ module.exports = {
         100: "25rem",
       },
       textColor: {
-        textColor: "#333",
+        textColor: "#444",
       },
       boxShadow: {
         subNav: "0 1px 2px 2px rgb(0 0 0 / 4%)",
@@ -68,6 +68,24 @@ module.exports = {
       },
       minHeight: {
         "120px": "7.5rem",
+      },
+      keyframes: {
+        menu: {
+          "0%": { transform: "translateX(-120%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        dropdown: {
+          "0%": {
+            height: "100%",
+          },
+          "100%": {
+            height: "0%",
+          },
+        },
+      },
+      animation: {
+        menu_ant: "menu 1s ease",
+        drop_down: 'dropdown 0.8s ease'
       },
     },
   },
