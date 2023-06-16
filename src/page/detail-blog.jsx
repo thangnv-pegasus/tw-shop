@@ -48,8 +48,8 @@ const Blog = () => {
         ) : (
           <>
             <PageTitle title={data.title} />
-            <div className="lg:max-w-container lg:mx-auto md:max-w-full md:px-4 lg:px-0">
-              <div className="min-h-[600px] py-10 text-[#444]">
+            <div className="lg:max-w-container lg:mx-auto max-w-full px-4 lg:px-0">
+              <div className="min-h-[600px] py-10 text-textColor">
                 <h2 className="text-3.5xl font-semibold">{data.title}</h2>
                 <p className="py-4 text-sm font-medium opacity-90 mb-4">
                   Đăng bởi: {data.author}{" "}
@@ -66,7 +66,7 @@ const Blog = () => {
                       return (
                         <p
                           key={index}
-                          className="text-sm text-[#444] my-4 leading-[1.7]"
+                          className="text-sm text-textColor my-4 leading-[1.7]"
                         >
                           {item}
                         </p>
@@ -74,11 +74,11 @@ const Blog = () => {
                     }
                   })}
                   <img src={data.img[1]} alt="img" className="mx-auto" />
-                  <p className="text-sm text-[#444] pt-3 pb-10">
+                  <p className="text-sm text-textColor pt-3 pb-10">
                     {data.content[data.content.length - 1]}
                   </p>
                   <div className="pt-5 border-t-[1px] border-t-solid border-t-[#ebebeb]">
-                    <h3 className="text-2xl font-semibold text-[#444]">
+                    <h3 className="text-2xl font-semibold text-textColor">
                       Bài viết liên quan:
                     </h3>
                     <RelatedBlog data={posts} />

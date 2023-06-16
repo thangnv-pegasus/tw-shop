@@ -14,15 +14,15 @@ const BookingPage = () => {
             <div className="grid lg:grid-cols-cols_7_5 sm:grid-cols-1">
               <form method="">
                 <div className="px-8">
-                  <h2 className="text-3.5xl font-semibold text-[#444] text-center pb-2">
+                  <h2 className="text-3.5xl font-semibold text-textColor text-center pb-2">
                     Đặt lịch <span className="text-sky-500">hẹn khám</span>
                   </h2>
-                  <p className="text-base font-medium text-[#444] text-center pb-8">
+                  <p className="text-base font-medium text-textColor text-center pb-8">
                     Chúng tôi tin vào việc cung cấp sự chăm sóc tốt nhất có thể
                     cho tất cả các bệnh nhân hiện tại của chúng tôi
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-x-5 flex-wrap text-[#444] text-sm">
+                <div className="grid grid-cols-2 gap-x-5 flex-wrap text-textColor text-sm">
                   <input
                     type="text"
                     placeholder="Tên của bạn*"
@@ -49,7 +49,7 @@ const BookingPage = () => {
                   id=""
                   rows="5"
                   placeholder="Nội dung*"
-                  className="px-4 py-8 block w-full mt-4 outline-none border-[1px] border-solid border-[#e5e5e5] rounded-md text-[#444] text-sm"
+                  className="px-4 py-8 block w-full mt-4 outline-none border-[1px] border-solid border-[#e5e5e5] rounded-md text-textColor text-sm"
                 ></textarea>
                 <Button
                   text="Đặt lịch ngay"

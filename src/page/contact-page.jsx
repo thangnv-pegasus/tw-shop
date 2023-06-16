@@ -76,9 +76,9 @@ const ContactPage = () => {
               </li>
             </ul>
           </div>
-          <form className="block text-[#444]">
+          <form className="block text-textColor">
             <h2 className="text-2xl mb-8 mt-5">Nhập thông tin của bạn</h2>
-            <div className="grid md:grid-cols-2 sm:grid-cols-1 flex-wrap gap-5 text-[#444] text-sm">
+            <div className="grid md:grid-cols-2 sm:grid-cols-1 flex-wrap gap-5 text-textColor text-sm">
               <input
                 type="text"
                 className="block w-full outline-none bg-[#ebebeb] h-11 px-4 rounded-lg"

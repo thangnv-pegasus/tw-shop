@@ -9,6 +9,7 @@ const Button = ({ text, className = "", linkTo }) => {
     return (
       <Link to={linkTo}
         className={`text-sm ${className} inline-flex items-center bg-sky-500 mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] `}
+        onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
       >
         {text}
         <span className="ml-1 font-bold">

@@ -25,8 +25,8 @@ const AnnouncementBar = () => {
   };
 
   return (
-    <div className="w-full bg-sky-500 sm:hidden md:block">
-      <div className="lg:max-w-container lg:w-full sm:w-full mx-auto text-white text-sm leading-10 font-medium flex justify-between">
+    <div className="w-full bg-sky-500 hidden md:block">
+      <div className="lg:max-w-container lg:w-full w-full lg:mx-auto text-white text-sm leading-10 font-medium flex justify-between">
         <div className="flex items-center md:px-4 lg:px-0">
           <div className="flex items-center">
             <span className="lg:text-lg md:text-sm">

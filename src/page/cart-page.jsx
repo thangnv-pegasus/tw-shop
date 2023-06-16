@@ -43,13 +43,13 @@ const ShoppingCart = () => {
       <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0 py-10">
         {cart.length == 0 ? (
           <>
-            <p className="my-4 text-sm text-[#444]">
+            <p className="my-4 text-sm text-textColor">
               Không có sản phẩm nào trong giỏ hàng
             </p>
           </>
         ) : (
           <>
-            <p className="uppercase text-base font-bold text-[#444] pb-2">
+            <p className="uppercase text-base font-bold text-textColor pb-2">
               Giỏ hàng của bạn
             </p>
             <div className="mt-4 px-3 border-r-[1px] border-l-[1px] border-b-[1px] border-solid border-[rgba(0,0,0,.09)] rounded-lg overflow-hidden">
@@ -65,7 +65,8 @@ const ShoppingCart = () => {
               <Link
                 to={routes.home}
                 className={`inline-flex items-center bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] mr-8 font-semibold`}
-              >
+                onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
+             >
                 <span className="mr-1 font-bold text-2xl">
                   <BiUndo />
                 </span>
@@ -75,6 +76,7 @@ const ShoppingCart = () => {
               <Link
                 to={routes.payPage}
                 className={`inline-flex items-center bg-sky-500 text-base mt-4 text-white px-8 h-12 rounded-3xl relative overflow-hidden group z-[1] mr-8 font-semibold`}
+                onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
               >
                 <span className="mr-1 font-bold text-xl">
                   <FontAwesomeIcon icon={faCheck} />
@@ -147,22 +149,23 @@ const ProductItem = ({ product }) => {
       <div className="w-1/3 px-3">
         <Link
           to={`/detail-product/${product.id}`}
-          className="text-base text-[#444] transition-all ease-linear hover:text-sky-500 pb-1 block"
+          className="text-base text-textColor transition-all ease-linear hover:text-sky-500 pb-1 block"
+          onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
         >
           {" "}
           {product.name}{" "}
         </Link>
         {product.price_sale ? (
-          <p className="text-sm text-[#444] opacity-75">
+          <p className="text-sm text-textColor opacity-75">
             {formatNumber(product.price_sale)}đ
           </p>
         ) : (
-          <p className="text-sm text-[#444] opacity-75">
+          <p className="text-sm text-textColor opacity-75">
             {formatNumber(product.price)}đ
           </p>
         )}
       </div>
-      <div className="text-[#444] bg-[#ebebeb] py-2 justify-between flex w-32 items-center rounded-3xl overflow-hidden">
+      <div className="text-textColor bg-[#ebebeb] py-2 justify-between flex w-32 items-center rounded-3xl overflow-hidden">
         <span
           className="py-1 px-2 cursor-pointer"
           onClick={() => UpdateProduct("REMOVE")}
@@ -177,7 +180,7 @@ const ProductItem = ({ product }) => {
           <FontAwesomeIcon icon={faCirclePlus} />
         </span>
       </div>
-      <div className="w-1/6 text-center py-2 text-[#444] text-sm">
+      <div className="w-1/6 text-center py-2 text-textColor text-sm">
         {formatNumber(product.quantity * (product.price_sale || product.price))}
         đ
       </div>

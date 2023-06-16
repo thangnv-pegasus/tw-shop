@@ -32,7 +32,7 @@ const AddToCartModal = ({ product, setOpenAddToCartModal }) => {
         className="w-[31.25rem] mt-10 bg-white rounded-md overflow-hidden h-fit"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-ceter relative px-4 py-4 border-b-[1px] border-solid border-[#ebebeb] text-base font-medium text-[#444]">
+        <div className="flex items-ceter relative px-4 py-4 border-b-[1px] border-solid border-[#ebebeb] text-base font-medium text-textColor">
           <span className="mr-2 font-bold">
             <FontAwesomeIcon icon={faCheck} />
           </span>
@@ -55,7 +55,7 @@ const AddToCartModal = ({ product, setOpenAddToCartModal }) => {
               className="w-full h-full obejct-cover object-center border-[1px] border-solid border-[#ebebeb]"
             />
           </div>
-          <div className="ml-3 text-[#444]">
+          <div className="ml-3 text-textColor">
             <h3 className="text-sm font-medium">{product.name}</h3>
             {product.price_sale ? (
               <p className="text-base mt-1">
@@ -70,6 +70,7 @@ const AddToCartModal = ({ product, setOpenAddToCartModal }) => {
           <Link
             to={routes.cartPage}
             className="text-base items-center font-semibold transition-all duration-150 ease-linear hover:text-sky-500 flex justify-center cursor-pointer"
+            onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
           >
             <span className="mr-1">
               <FontAwesomeIcon icon={faCaretRight} />

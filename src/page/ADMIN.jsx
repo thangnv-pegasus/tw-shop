@@ -74,7 +74,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="id"
         value={id}
         onChange={(e) => setId(e.target.value)}
@@ -83,7 +83,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -92,7 +92,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="brand"
         value={brand}
         onChange={(e) => setBrand(e.target.value)}
@@ -101,7 +101,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="kind"
         value={kind}
         onChange={(e) => setKind(e.target.value)}
@@ -110,7 +110,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
@@ -119,7 +119,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="price_sale"
         value={priceSale}
         onChange={(e) => setPriceSale(e.target.value)}
@@ -128,7 +128,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="url 1"
         value={imgUrl1}
         onChange={(e) => setImgUrl1(e.target.value)}
@@ -137,7 +137,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="url 2"
         value={imgUrl2}
         onChange={(e) => setImgUrl2(e.target.value)}
@@ -146,7 +146,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="url 3"
         value={imgUrl3}
         onChange={(e) => setImgUrl3(e.target.value)}
@@ -155,7 +155,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="description"
         value={des}
         onChange={(e) => setDes(e.target.value)}
@@ -164,7 +164,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="detail 1"
         value={detail1}
         onChange={(e) => setDetail1(e.target.value)}
@@ -173,7 +173,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="detail 2"
         value={detail2}
         onChange={(e) => setDetail2(e.target.value)}
@@ -182,7 +182,7 @@ const Admin = () => {
         type="text"
         name=""
         id=""
-        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-[#444] rounded-md px-2 py-1 outline-none"
+        className="block border-[1px] border-solid border-[#ccc] my-3 text-base text-textColor rounded-md px-2 py-1 outline-none"
         placeholder="detail 3"
         value={detail3}
         onChange={(e) => setDetail3(e.target.value)}

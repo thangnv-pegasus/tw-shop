@@ -150,17 +150,17 @@ const DetailProduct = () => {
         ) : (
           <>
             <PageTitle title={product.name} />
-            <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
-              <div className="py-10 grid grid-cols-2 gap-3">
+            <div className="lg:max-w-container lg:mx-auto max-w-full px-4 lg:px-0">
+              <div className="py-10 grid md:grid-cols-2 grid-cols-1 gap-3">
                 <ProductImage productUrl={product.imgUrl} />
                 <div>
-                  <h2 className="text-3xl text-[#444] font-normal mb-4">
+                  <h2 className="text-3xl text-textColor font-normal mb-4">
                     {product.name}
                   </h2>
                   <div className="mb-4">
                     {product.price_sale ? (
                       <div className="flex items-end">
-                        <p className="text-2xl text-[#444] font-bold">
+                        <p className="text-2xl text-textColor font-bold">
                           {" "}
                           {formatNumber(product.price_sale)}{" "}
                           <sup className="inline ml-[-5px] underline">đ</sup>{" "}
@@ -173,17 +173,17 @@ const DetailProduct = () => {
                       </div>
                     ) : (
                       <>
-                        <p className="text-2xl text-[#444] font-bold">
+                        <p className="text-2xl text-textColor font-bold">
                           {formatNumber(product.price)}{" "}
                           <sup className="inline ml-[-5px] underline">đ</sup>
                         </p>
                       </>
                     )}
                   </div>
-                  <div className="text-sm text-[#444] leading-6">
+                  <div className="text-sm text-textColor leading-6">
                     {product.description}
                   </div>
-                  <div className="mt-5 text-[#444]">
+                  <div className="mt-5 text-textColor">
                     <p className="mb-3 font-bold text-sm">Số lượng</p>
                     <div className="bg-[#ebebeb] inline-flex items-center rounded-3xl">
                       <button
@@ -235,7 +235,7 @@ const DetailProduct = () => {
               <div className="mt-14 mb-8 border-[1px] border-solid border-[#ebebeb] px-3">
                 <div className="flex border-b-[1px] border-b-solid border-b-[#ebebeb]">
                   <button
-                    className="relative block text-lg uppercase py-3 text-[#444] font-semibold mr-10"
+                    className="relative block text-lg uppercase py-3 text-textColor font-semibold mr-10"
                     onClick={() => setTabIndex(1)}
                   >
                     Thông tin sản phẩm
@@ -244,7 +244,7 @@ const DetailProduct = () => {
                     )}
                   </button>
                   <button
-                    className="relative block text-lg uppercase py-3 text-[#444] font-semibold"
+                    className="relative block text-lg uppercase py-3 text-textColor font-semibold"
                     onClick={() => setTabIndex(2)}
                   >
                     Quy định bảo hành
@@ -253,7 +253,7 @@ const DetailProduct = () => {
                     )}
                   </button>
                 </div>
-                <div className="py-5 text-sm text-[#444] font-normal">
+                <div className="py-5 text-sm text-textColor font-normal">
                   {tabIndex === 1 &&
                     product.detail.map((content, index) => {
                       return (
@@ -263,7 +263,7 @@ const DetailProduct = () => {
                       );
                     })}
                   {tabIndex === 2 && (
-                    <p className="py-5 text-sm text-[#444] font-normal">
+                    <p className="py-5 text-sm text-textColor font-normal">
                       Nội dung tùy chỉnh viết ở đây
                     </p>
                   )}
@@ -272,13 +272,14 @@ const DetailProduct = () => {
               <div>
                 <Link
                   to={routes.products}
-                  className="text-2xl block mb-9 font-semibold text-[#444] transition-all ease-linear duration-100 hover:text-sky-500"
+                  className="text-2xl block mb-9 font-semibold text-textColor transition-all ease-linear duration-100 hover:text-sky-500"
+                  onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
                 >
                   {" "}
                   Sản phẩm liên quan{" "}
                 </Link>
                 <Swiper
-                  slidesPerView={3}
+                  slidesPerView={2}
                   spaceBetween={30}
                   pagination={{
                     clickable: true,

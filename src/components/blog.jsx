@@ -3,8 +3,12 @@ import routes from "~/config/routes";
 
 const Blog = ({ data }) => {
   return (
-    <div className="text-[#444] flex lg:max-w-480px md:max-w-full mt-5">
-      <Link to={`/blog/${data.id}`} className="w-158px h-auto block">
+    <div className="text-textColor flex lg:max-w-480px md:max-w-full mt-5">
+      <Link
+        to={`/blog/${data.id}`}
+        className="w-158px h-auto block"
+        onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+      >
         <img
           src={data.img[0]}
           alt="blog img"
@@ -16,6 +20,7 @@ const Blog = ({ data }) => {
         <Link
           to={`/blog/${data.id}`}
           className="block text-lg my-2 font-semibold pr-10 transition-all duration-150 hover:text-sky-500"
+          onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
         >
           {data.title}
         </Link>

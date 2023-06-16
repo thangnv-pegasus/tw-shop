@@ -81,6 +81,7 @@ const SigninForm = () => {
     }
 
     nav("/");
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
   };
 
   const SignInWithFacebook = async () => {
@@ -101,7 +102,7 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="max-w-container mx-auto text-center text-[#444]">
+    <div className="max-w-container mx-auto text-center text-textColor">
       <form
         className="block my-5"
         onSubmit={(e) => {
@@ -113,7 +114,8 @@ const SigninForm = () => {
           Nếu bạn chưa có tài khoản,{" "}
           <Link
             to={routes.signup}
-            className="inline-block decoration-solid decoration-[#444] decoration-1 transition-all duration-150 hover:text-sky-500 text-[#444]"
+            className="inline-block decoration-solid decoration-[#444] decoration-1 transition-all duration-150 hover:text-sky-500 text-textColor"
+            onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
           >
             đăng ký tại đây!
           </Link>
@@ -139,7 +141,7 @@ const SigninForm = () => {
           Đăng nhập
           <span className="absolute top-0 left-0 right-0 bottom-0 bg-sky-400 z-[-1] w-0 transition-all duration-500 group-hover:w-full"></span>
         </button>
-        <Link to="/" className="block text-center text-[#444] text-sm">
+        <Link to="/" className="block text-center text-textColor text-sm">
           Quên mật khẩu
         </Link>
         <div className="text-center my-8 text-sm">

@@ -15,6 +15,7 @@ import { Grid } from "swiper";
 import Product from "./product-item";
 import { useContext, useState } from "react";
 import { AppContext } from "~/context-api/app-provider";
+import routes from "~/config/routes";
 
 const MedicalProduct = () => {
   const { products } = useContext(AppContext);
@@ -27,8 +28,9 @@ const MedicalProduct = () => {
             Chúng tôi có
           </p>
           <Link
-            to="/"
-            className="text-3.5xl block text-[#444] font-bold transition-all duration-150 hover:text-sky-500"
+            to={routes.products}
+            className="text-3.5xl block text-textColor font-bold transition-all duration-150 hover:text-sky-500"
+            onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}
           >
             Sản phẩm y tế
           </Link>
@@ -37,7 +39,7 @@ const MedicalProduct = () => {
         <SearchForm />
         <div>
           <Swiper
-            slidesPerView={4}
+            slidesPerView={1}
             grid={{
               rows: 2,
               fill: "row",
@@ -101,7 +103,7 @@ const SearchForm = ({ value }) => {
         <input
           type="text"
           placeholder="Tìm sản phẩm khác..."
-          className="outline-none text-sm font-medium text-[#444] h-11 px-4 block w-56"
+          className="outline-none text-sm font-medium text-textColor h-11 px-4 block w-56"
           onChange={(e) => setText(e.target.value)}
           value={text}
         />

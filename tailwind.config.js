@@ -74,6 +74,10 @@ module.exports = {
           "0%": { transform: "translateX(-120%)" },
           "100%": { transform: "translateX(0)" },
         },
+        filter: {
+          "0%": { transform: "translateX(120%)" },
+          "100%": { transform: "translateX(0)" },
+        },
         dropdown: {
           "0%": {
             height: "100%",
@@ -85,7 +89,8 @@ module.exports = {
       },
       animation: {
         menu_ant: "menu 1s ease",
-        drop_down: 'dropdown 0.8s ease'
+        filter_amt: "filter 1s ease",
+        drop_down: "dropdown 0.8s ease",
       },
     },
   },

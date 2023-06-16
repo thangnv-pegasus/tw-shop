@@ -17,9 +17,9 @@ const News = () => {
     <>
       <Header />
       <PageTitle title="Tin tức" />
-      <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
+      <div className="lg:max-w-container lg:mx-auto max-w-full px-4 lg:px-0">
         <div className="py-10">
-          <h2 className="text-left font-semibold text-[#444] text-4xl">
+          <h2 className="text-left font-semibold text-textColor text-4xl">
             Tin tức
           </h2>
           {posts == null ? (

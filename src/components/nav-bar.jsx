@@ -26,9 +26,9 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="lg:max-w-container lg:px-0 lg:mx-auto md:w-full md:max-w-full sm:px-4 flex justify-between items-center">
+      <div className="lg:max-w-container lg:px-0 lg:mx-auto md:w-full md:max-w-full sm:px-4 w-full px-4 flex justify-between items-center">
         <div
-          className="sm:block lg:hidden cursor-pointer text-2xl text-[#444]"
+          className="block lg:hidden cursor-pointer text-2xl text-textColor"
           onClick={() => setOpenMenu(true)}
         >
           <FontAwesomeIcon icon={faBars} />
@@ -41,7 +41,7 @@ const NavBar = () => {
               className="w-full h-16 object-cover object-center block my-3"
             />
           </Link>
-          <div className="flex items-center mx-4 lg:flex sm:hidden">
+          <div className="items-center mx-4 lg:flex hidden">
             <NavLink
               to={routes.home}
               style={(nav) => (nav.isActive ? { color: "rgb(3 105 161)" } : {})}
@@ -179,7 +179,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className="flex items-center text-base font-bold cursor-pointer">
-          <div className="px-2 relative text-lg group">
+          <div className="lg:block hidden px-2 relative text-lg group">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             <span className="absolute right-0 top-1/2 h-4 w-[2px] bg-[#8fbb43] translate-y-[-50%] "></span>
             <form

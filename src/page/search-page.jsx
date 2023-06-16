@@ -35,16 +35,16 @@ const SearchPage = () => {
     <>
       <Header />
       <PageTitle title="Kết quả tìm kiếm" />
-      <div className="max-w-container mx-auto">
+      <div className="lg:max-w-container lg:mx-auto lg:px-0 max-w-full px-4">
         <div className="py-10">
           {products == null ? (
             <Loading />
           ) : (
             <div>
-              <h2 className="text-2xl font-semibold text-[#444] pb-5">
+              <h2 className="text-2xl font-semibold text-textColor pb-5">
                 Có {products.length} kết quả tìm kiếm phù hợp
               </h2>
-              <div className="grid grid-cols-4 gap-8">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
                 {products.map((product) => {
                   return (
                     <Product

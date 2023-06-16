@@ -11,7 +11,7 @@ const XetNghiemDiTruyen = () => {
 
       <PageTitle title="Xét nghiệm di truyền" />
       <div className="lg:max-w-container lg:mx-auto sm:max-w-full sm:px-4 lg:px-0">
-        <div className="py-10 text-sm text-[#444] leading-7">
+        <div className="py-10 text-sm text-textColor leading-7">
           <p className="pb-4">
             Xét nghiệm di truyền hay còn được gọi là xét nghiệm DNA, cho phép
             phân tích gen có khả năng gây bệnh di truyền, và cũng có thể được sử

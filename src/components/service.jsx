@@ -3,6 +3,7 @@ import "~/css/custom.scss";
 import Button from "~/components/button";
 import routes from "~/config/routes";
 import { Swiper, SwiperSlide } from "swiper/react";
+import '~/css/oneline.scss'
 
 // Import Swiper styles
 import "swiper/css";
@@ -79,8 +80,8 @@ const contentData = [
 const ServiceTab = () => {
   return (
     <div className="bg-[#f6f7f9] min-h-[500px] w-full py-24">
-      <div className="lg:max-w-container lg:mx-auto sm:px-4 sm:max-w-full">
-        <h2 className="relative text-center text-4xl pb-3 leading-[3rem] font-bold text-[#444]">
+      <div className="lg:max-w-container lg:mx-auto lg:px-0 px-4 max-w-full">
+        <h2 className="relative text-center text-4xl pb-3 leading-[3rem] font-bold text-textColor">
           Xét nghiệm chuẩn đoán
           <span className="absolute top-full left-1/2 w-14 h-[3px] bg-sky-500 translate-x-[-50%] "></span>
         </h2>
@@ -96,7 +97,7 @@ const Tab = () => {
   return (
     <div className="">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={30}
         loop={true}
         pagination={{
@@ -132,7 +133,7 @@ const Tab = () => {
               style={state === 1 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold transition-all duration-200 text-[#444] group-hover:text-white"
+              className="mt-5 text-center font-semibold transition-all duration-200 text-textColor oneline group-hover:text-white"
               style={state === 1 ? { color: "white" } : {}}
             >
               Tầm soát ung thư
@@ -152,7 +153,7 @@ const Tab = () => {
               style={state === 2 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              className="mt-5 text-center font-semibold text-textColor transition-all duration-200 group-hover:text-white"
               style={state === 2 ? { color: "white" } : {}}
             >
               Mô học
@@ -172,7 +173,7 @@ const Tab = () => {
               style={state === 3 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              className="mt-5 text-center font-semibold text-textColor transition-all duration-200 group-hover:text-white"
               style={state === 3 ? { color: "white" } : {}}
             >
               Khám tổng quát
@@ -192,7 +193,7 @@ const Tab = () => {
               style={state === 4 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              className="mt-5 text-center font-semibold text-textColor transition-all duration-200 group-hover:text-white"
               style={state === 4 ? { color: "white" } : {}}
             >
               Xét nghiệm máu
@@ -212,7 +213,7 @@ const Tab = () => {
               style={state === 5 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              className="mt-5 text-center font-semibold text-textColor transition-all duration-200 oneline group-hover:text-white"
               style={state === 5 ? { color: "white" } : {}}
             >
               Xét nghiệm di truyền
@@ -232,7 +233,7 @@ const Tab = () => {
               style={state === 6 ? { filter: "brightness(5)" } : {}}
             />
             <p
-              className="mt-5 text-center font-semibold text-[#444] transition-all duration-200 group-hover:text-white"
+              className="mt-5 text-center font-semibold text-textColor transition-all duration-200 group-hover:text-white"
               style={state === 6 ? { color: "white" } : {}}
             >
               Tế bào học
@@ -258,16 +259,16 @@ const Tab = () => {
 
 const TabContent = ({ imgSrc, title, content = [] }) => {
   return (
-    <div className="grid md:grid-cols-2 md:gap-3 sm:grid-cols-1 flex-wrap text-[#444] lg:mt-0 sm:mt-10">
+    <div className="grid md:grid-cols-2 md:gap-3 sm:grid-cols-1 flex-wrap text-textColor lg:mt-6 sm:mt-10">
       <div className="">
-        <img src={imgSrc} alt="img" className="sm:mx-auto md:m-0 sm:mb-5"/>
+        <img src={imgSrc} alt="img" className="sm:mx-auto md:m-0 sm:mb-5 rounded-sm"/>
       </div>
       <div>
-        <h2 className="text-[1.75rem] font-semibold mb-5 ">{title}</h2>
+        <h2 className="text-[1.75rem] font-semibold mb-5 lg:mt-0 mt-2">{title}</h2>
         <div className="leading-7 text-[#787878]">
           {content.map((item, index) => {
             return (
-              <p key={index} className="my-2 md:text-sm">
+              <p key={index} className="my-2 lg:text-base text-sm">
                 {item}
               </p>
             );
@@ -275,7 +276,7 @@ const TabContent = ({ imgSrc, title, content = [] }) => {
         </div>
         <div className="flex">
           <Button text={"Xem thêm"} className="mr-3" />
-          <Button text={"Đặt lịch ngay"} linkTo={routes.bookingPage} />
+          <Button text={"Đặt lịch ngay"} linkTo={routes.bookingPage} onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})} />
         </div>
       </div>
     </div>

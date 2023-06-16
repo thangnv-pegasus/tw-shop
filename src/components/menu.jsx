@@ -12,21 +12,46 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signOut } from "firebase/auth";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { firebase_auth } from "~/config/firebase-config";
 import routes from "~/config/routes";
 import { AppContext } from "~/context-api/app-provider";
+import { AuthContext } from "~/context-api/auth-provider";
 
 const Menu = () => {
   const { openMenu, setOpenMenu } = useContext(AppContext);
   const [dropdown, setDropdown] = useState(false);
+  const { user } = useContext(AuthContext);
+  const [text, setText] = useState("");
+  const nav = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(firebase_auth)
+      .then(() => {
+        // Sign-out successful.
+        nav("/");
+        window.location.reload();
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    nav(`/search-page/${text}`);
+  };
+  // console.log(user)
+
   return (
     <div
       className="fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] z-20"
       onClick={() => setOpenMenu(false)}
     >
       <div
-        className="bg-white min-w-[200px] h-screen w-fit px-4 animate-menu_ant"
+        className="bg-white min-w-[200px] h-screen w-fit px-4 animate-menu_ant overflow-y-scroll"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -42,6 +67,10 @@ const Menu = () => {
         <form
           action=""
           className="flex w-full mt-4 items-center border-solid border-[1px] border-[#ededed] rounded-full overflow-hidden"
+          onSubmit={(e) => {
+            handleSubmit(e);
+            setOpenMenu(false);
+          }}
         >
           <input
             type="text"
@@ -49,33 +78,57 @@ const Menu = () => {
             id=""
             className="block flex-1 outline-none py-2 px-3 text-base text-textColor"
             placeholder="Tìm kiếm..."
+            onChange={(e) => setText(e.target.value)}
+            value={text}
           />
           <button type="submit" className="px-3">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>
         <div className="flex items-center pt-8 pb-6 text-textColor font-medium text-sm">
-          <Link
-            to={routes.login}
-            className="block transition-all ease-linear duration-100 hover:text-sky-500"
-          >
-            {" "}
-            Đăng nhập
-          </Link>
-          <span className="px-1">/</span>
-          <Link
-            to={routes.signup}
-            className="block transition-all ease-linear duration-100 hover:text-sky-500"
-          >
-            {" "}
-            Đăng ký
-          </Link>
+          {user ? (
+            <>
+              <Link className="text-sm text-sky-500 font-medium transition-all duration-15">
+                {/* {user.last_name} */}
+                {user.displayName || 'user'}
+              </Link>
+              <span className="mx-1">/</span>
+              <p
+                onClick={() => {
+                  handleSignOut();
+                  setOpenMenu(false);
+                }}
+                className="text-sm font-medium transition-all duration-150 cursor-pointer hover:text-sky-700"
+              >
+                Đăng xuất
+              </p>
+            </>
+          ) : (
+            <>
+              <Link
+                to={routes.login}
+                className="text-sm font-medium transition-all duration-150 hover:text-sky-700"
+                onClick={() => setOpenMenu(false)}
+              >
+                Đăng nhập
+              </Link>
+              <span className="mx-1">/</span>
+              <Link
+                to={routes.signup}
+                className="text-sm font-medium transition-all duration-150 hover:text-sky-700"
+                onClick={() => setOpenMenu(false)}
+              >
+                Đăng ký
+              </Link>
+            </>
+          )}
         </div>
         <ul>
           <li>
             <Link
               to={routes.home}
               className="py-3 block border-solid border-b-[1px] border-[#ebebeb]"
+              onClick={() => setOpenMenu(false)}
             >
               Trang chủ
             </Link>
@@ -84,6 +137,7 @@ const Menu = () => {
             <Link
               to={routes.introPage}
               className="py-3 block border-solid border-b-[1px] border-[#ebebeb]"
+              onClick={() => setOpenMenu(false)}
             >
               Giới thiệu
             </Link>
@@ -113,6 +167,7 @@ const Menu = () => {
                 <Link
                   to={routes.TamSoatUngThu}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Tầm soát ung thư
                 </Link>
@@ -121,6 +176,7 @@ const Menu = () => {
                 <Link
                   to={routes.MoHoc}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Mô học
                 </Link>
@@ -129,6 +185,7 @@ const Menu = () => {
                 <Link
                   to={routes.khamtongquat}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Khám tổng quát
                 </Link>
@@ -137,6 +194,7 @@ const Menu = () => {
                 <Link
                   to={routes.xetnghiemmau}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Xét nghiệm máu
                 </Link>
@@ -145,6 +203,7 @@ const Menu = () => {
                 <Link
                   to={routes.TamSoatUngThu}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Tầm soát ung thư
                 </Link>
@@ -153,14 +212,30 @@ const Menu = () => {
                 <Link
                   to={routes.xetnghiemditruyen}
                   className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
                 >
                   Xét nghiệm di truyền
                 </Link>
               </li>
               <li>
-                <Link to={routes.tebaohoc}>Tế bào học</Link>
+                <Link
+                  to={routes.tebaohoc}
+                  className="block py-2 px-2 my-1 border-b-[1px] border-solid border-[#ebebeb] text-sm"
+                  onClick={() => setOpenMenu(false)}
+                >
+                  Tế bào học
+                </Link>
               </li>
             </ul>
+          </li>
+          <li>
+            <Link
+              to={routes.products}
+              className="py-3 block border-solid border-b-[1px] border-[#ebebeb]"
+              onClick={() => setOpenMenu(false)}
+            >
+              Sản phẩm
+            </Link>
           </li>
           <li>
             <Link
@@ -174,6 +249,7 @@ const Menu = () => {
             <Link
               to={routes.contact}
               className="py-3 block border-solid border-b-[1px] border-[#ebebeb]"
+              onClick={() => setOpenMenu(false)}
             >
               Liên hệ
             </Link>
